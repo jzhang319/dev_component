@@ -16,6 +16,8 @@ class User(db.Model, UserMixin):
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, server_default=db.func.now(), server_onupdate=db.func.now())
 
+    components = db.relationship('Component', back_populates='user', cascade='all, delete-orphan')
+
 
     @property
     def password(self):
@@ -33,6 +35,7 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'username': self.username,
             'email': self.email,
+            'components': [component.to_dict() for component in self.components],
             'created_at': self.created_at,
             'updated_at': self.updated_at
         }
