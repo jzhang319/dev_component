@@ -1,5 +1,4 @@
 import React from "react";
-import "./Navbar.scss";
 import Avatar from "@mui/material/Avatar";
 import { SearchIcon } from "../../exports";
 
@@ -33,7 +32,7 @@ const Navbar = ({ sessionUser }) => {
           <span className="navbar__right--username">
             {sessionUser?.username} Demo
           </span>
-          <Avatar />
+          <Avatar className="navbar__right--userIcon"/>
         </div>
       </div>
     </div>
