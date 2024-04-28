@@ -1,10 +1,13 @@
 import React from 'react'
 import './Navbar.scss'
 
-const Navbar = () => {
-  return (
-    <div className=''>
+const Navbar = ({sessionUser}) => {
 
+  let content;
+
+  return (
+    <div className='navbar'>
+      
     </div>
   )
 }
