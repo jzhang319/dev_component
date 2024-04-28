@@ -1,9 +1,10 @@
 import React from 'react'
+import { LeftBar } from '../../exports'
 
 const Home = () => {
   return (
-    <div className=''>
-
+    <div className='home'>
+      <LeftBar/>
     </div>
   )
 }

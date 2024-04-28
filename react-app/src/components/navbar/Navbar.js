@@ -30,7 +30,7 @@ const Navbar = ({ sessionUser }) => {
           {/* <span>hello</span>
           <span>hello</span> */}
           <span className="navbar__right--username">
-            {sessionUser?.username} Demo
+            {sessionUser? sessionUser.username : 'Welcome'}
           </span>
           <Avatar className="navbar__right--userIcon"/>
         </div>
