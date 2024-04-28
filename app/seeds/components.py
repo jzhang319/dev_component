@@ -1,16 +1,16 @@
-from app.models import db, User, environment, SCHEMA
+from app.models import db, environment, SCHEMA, Component
 from sqlalchemy.sql import text
 
 
 # Adds a demo user, you can add other users here if you want
-def seed_users():
-    jackz = User(
-        username='jackz', email='jackz@aa.io', password='password', is_admin=False)
-    sagehenny = User(
-        username='sagehenny', email='sagehenny@aa.io', password='password', is_admin=False)
+def seed_components():
+    new1 = Component(
+        user_id=1, type='navbar', code='<div><nav>Navbar</nav></div>')
+    new2 = Component(
+        user_id=1, type='button', code='<div><button>Click me</button></div>')
 
-    db.session.add(jackz)
-    db.session.add(sagehenny)
+    db.session.add(new1)
+    db.session.add(new2)
     db.session.commit()
 
 
@@ -20,10 +20,10 @@ def seed_users():
 # incrementing primary key, CASCADE deletes any dependent entities.  With
 # sqlite3 in development you need to instead use DELETE to remove all data and
 # it will reset the primary keys for you as well.
-def undo_users():
+def undo_components():
     if environment == "production":
         db.session.execute(f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;")
     else:
-        db.session.execute(text("DELETE FROM users"))
+        db.session.execute(text("DELETE FROM components"))
 
     db.session.commit()
