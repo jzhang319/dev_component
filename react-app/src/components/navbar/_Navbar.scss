@@ -5,6 +5,10 @@
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 99999;
+  background-color: black;
 
   &__wrapper{
     display: flex;

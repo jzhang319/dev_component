@@ -1,0 +1,35 @@
+.list{
+
+  &__wrapper{
+    display: flex;
+    align-items: center;
+    margin-left: 1rem;
+    font-size: 1.6rem;
+    cursor: pointer;
+    margin-top: .5rem;
+    // text-align: center;
+    margin-bottom: 1rem;
+    width: 100%;
+  }
+
+  &__toggle{
+    color: $popup-button2;
+    margin-top: 2rem;
+    width: 75%;
+    margin-left: 2rem;
+    padding-left: 1rem;
+    border-radius: 1rem;
+
+    &:hover{
+      color: $popup-button1;
+      background-color: $searchbar_color;
+
+    }
+  }
+
+  &__button{
+    font-size: 1.6rem;
+    margin-left: 1rem;
+    font-weight: 800;
+  }
+}

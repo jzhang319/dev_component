@@ -1,4 +1,16 @@
+// $primary-button: #2563eb;
+// $popup-background: #cbd5e1;
+// $popup-button1: #eab308;
+// $popup-button2: #0d9488;
+// $primary-text-color: #9ca3af;
+// $secondary_text_color: #374151;
+// $searchbar_color: #52525b;
+// $primary_white: #fff
 .sidebar{
-  grid-column-start: 1;
-  grid-column-end: 2;
+  grid-column-start: 0;
+  grid-column-end: 1.5;
+  border-right: .3rem solid $searchbar_color;
+  height: 95vh;
+  min-width: 30rem;
+  max-width: 30rem;
 }
