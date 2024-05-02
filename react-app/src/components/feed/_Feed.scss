@@ -1,6 +1,14 @@
 .feed{
   grid-column-start: 3;
   grid-column-end: 4;
-  // min-width: 70vw;
-  // max-width: 95vw;
+  // place-items: center;
+  background-color: gray;
+  // place-items: center;
+  place-content: center;
+
+  &__wrapper{
+    max-width: 40rem;
+    min-width: 25rem;
+    background-color: #fff;
+  }
 }
