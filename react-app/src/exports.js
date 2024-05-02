@@ -14,3 +14,5 @@ export {default as SearchIcon} from "@mui/icons-material/Search"
 // export {default as Avatar} from '@mui/icons-material'
 export {default as ArrowForwardIcon} from '@mui/icons-material/ArrowForward';
 export {default as ArrowDownwardIcon} from '@mui/icons-material/ArrowDownward';
+export {default as ClipboardIcon} from '@mui/icons-material/ContentPaste';
+export {default as CheckIcon} from '@mui/icons-material/Check';
