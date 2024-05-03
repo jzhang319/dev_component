@@ -8,9 +8,8 @@
 // $primary_white: #fff
 .sidebar{
   grid-column-start: 0;
-  grid-column-end: 1.5;
+  grid-column-end: 2;
   border-right: .3rem solid $searchbar_color;
-  // height: 100vh;
-  min-width: 30rem;
-  max-width: 30rem;
+  min-width: 20rem;
+  max-width: 38rem;
 }

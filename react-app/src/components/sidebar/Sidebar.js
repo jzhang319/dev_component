@@ -5,7 +5,7 @@ import { ArrowDownwardIcon, ArrowForwardIcon } from '../../exports'
 const Sidebar = () => {
   return (
     <div className='sidebar'>
-      <div className="sidebar__wrapper">
+      <div className="sidebar__wrapper mt-8">
         <List text='Getting Started'/>
         <List text='Components'/>
       </div>

@@ -1,9 +1,13 @@
-import React, {useState} from 'react'
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { atomOneDark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
-import { ArrowDownwardIcon, ArrowForwardIcon, ClipboardIcon, check} from '../../exports';
-import
-{
+import React, { useState } from "react";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { atomOneDark } from "react-syntax-highlighter/dist/esm/styles/hljs";
+import {
+  ArrowDownwardIcon,
+  ArrowForwardIcon,
+  ClipboardIcon,
+  check,
+} from "../../exports";
+import {
   coy,
   dark,
   funky,
@@ -47,16 +51,13 @@ import
   vs,
   vscDarkPlus,
   xonokai,
-  zTouch
-  }
-   from 'react-syntax-highlighter/dist/esm/styles/prism';
+  zTouch,
+} from "react-syntax-highlighter/dist/esm/styles/prism";
 
-const Feed = ({show, setShow, text}) => {
-  const [copy, setCopy] = useState(false)
+const Feed = ({ show, setShow, text }) => {
+  const [copy, setCopy] = useState(false);
 
-
-  let content = (
-  `<div className="list__wrapper">
+  let content = `<div className="list__wrapper">
 
   {show ?
     <div className='list__toggle' >
@@ -69,48 +70,47 @@ const Feed = ({show, setShow, text}) => {
     <span className="list__button"  onClick={() => setShow(true)}>{text}</span>
   </div>
   }
-</div>`
-)
+</div>`;
   return (
     <div className="feed">
       <div className="feed__wrapper">
         <div>
           <p>Example code</p>
-          {copy? (
+          {copy ? (
             <button>
-            <span>
-              <ClipboardIcon/>
-            </span>
+              <span>
+                <ClipboardIcon />
+              </span>
               Copied!
-          </button>
-          ):(
-          <button onClick={() => {navigator.clipboard.writeText(content);
-            setCopy(true)
-            setTimeout(() => {
-
-              setCopy(false)
-            }, 3000);
-          }}>
-            <span>
-              <ClipboardIcon/>
-            </span>
+            </button>
+          ) : (
+            <button
+              onClick={() => {
+                navigator.clipboard.writeText(content);
+                setCopy(true);
+                setTimeout(() => {
+                  setCopy(false);
+                }, 3000);
+              }}
+            >
+              <span>
+                <ClipboardIcon />
+              </span>
               Copy Code
-          </button>
+            </button>
           )}
         </div>
-            <SyntaxHighlighter
-            language="jsx"
-            style={coldarkDark}
-            customStyle={
-              {padding:'2.5rem'
-              }}
-              wrapLongLines={true }
-              >
-              {content}
-            </SyntaxHighlighter>
+        <SyntaxHighlighter
+          language="jsx"
+          style={coldarkDark}
+          customStyle={{ padding: "2.5rem" }}
+          wrapLongLines={true}
+        >
+          {content}
+        </SyntaxHighlighter>
       </div>
     </div>
   );
-}
+};
 
-export default Feed
+export default Feed;

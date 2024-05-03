@@ -1,13 +1,16 @@
 .feed{
-  grid-column-start: 3;
+  grid-column-start: 2;
   grid-column-end: 4;
   // place-items: center;
-  background-color: gray;
+  background-color: black;
   // place-items: center;
   place-content: center;
+  // border-right: .3rem solid $searchbar_color;
 
   &__wrapper{
-    max-width: 40rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    max-width: 70rem;
     min-width: 25rem;
     background-color: #fff;
   }

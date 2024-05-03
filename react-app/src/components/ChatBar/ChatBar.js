@@ -54,6 +54,9 @@ function ChatBar() {
 
   return (
     <div className="flex flex-col bg-black text-white p-4 w-full">
+      <div className="flex justify-center text-3xl my-2 text-yellow-500">
+        General Chat
+      </div>
       <div className="overflow-y-auto mt-2 mb-4 flex-grow">
         {response.map((item, index) => (
           <div
@@ -69,11 +72,11 @@ function ChatBar() {
         <input
           value={message}
           onChange={(e) => setMessage(e.target.value)}
-          className="flex-grow mr-4 p-2 rounded border text-black"
+          className="flex-grow mr-2 p-2 rounded border text-black text-xl"
         />
         <button
           type="submit"
-          className="bg-blue-500 text-white rounded px-4 py-2"
+          className="bg-teal-600 text-white rounded px-3 py-2"
         >
           <ArrowForwardIcon />
         </button>
