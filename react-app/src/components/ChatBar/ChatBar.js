@@ -13,7 +13,11 @@ function ChatBar() {
   const sessionUser = useSelector((state) => state.session.user);
 
   useEffect(() => {
-    socketRef.current = socketIOClient("http://localhost:3000");
+    const serverURL =
+      process.env.NODE_ENV === "production"
+        ? "https://devcomponent.onrender.com"
+        : "http://localhost:5000";
+    socketRef.current = socketIOClient(serverURL);
     // console.log("Connecting to server ...");
 
     socketRef.current.on("chat message", (message) => {

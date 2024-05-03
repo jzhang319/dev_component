@@ -1,7 +1,6 @@
 import os
 from flask import Flask, render_template, request, session, redirect
 from flask_cors import CORS
-from flask_socketio import SocketIO
 from flask_migrate import Migrate
 from flask_wtf.csrf import CSRFProtect, generate_csrf
 from flask_login import LoginManager
@@ -10,6 +9,7 @@ from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .seeds import seed_commands
 from .config import Config
+from flask_socketio import SocketIO
 
 app = Flask(__name__, static_folder='../react-app/build', static_url_path='/')
 
@@ -17,16 +17,10 @@ app = Flask(__name__, static_folder='../react-app/build', static_url_path='/')
 login = LoginManager(app)
 login.login_view = 'auth.unauthorized'
 
-socketio = SocketIO(app, cors_allowed_origins="*")
 
 @login.user_loader
 def load_user(id):
     return User.query.get(int(id))
-
-@socketio.on('chat message')
-def handle_message(data):
-    # print(f"Received message(server): {data['message']} from {data['username']}")
-    socketio.emit('chat message', data)
 
 
 # Tell flask about our seed commands
@@ -38,8 +32,17 @@ app.register_blueprint(auth_routes, url_prefix='/api/auth')
 db.init_app(app)
 Migrate(app, db)
 
+
 # Application Security
 CORS(app)
+
+cors_origins = "*" if os.environ.get('FLASK_ENV') != 'production' else ["http://devcomponent.onrender.com", "https://devcomponent.onrender.com"]
+socketio = SocketIO(app, cors_allowed_origins=cors_origins)
+
+@socketio.on('chat message')
+def handle_message(data):
+    # print(f"Received message(server): {data['message']} from {data['username']}")
+    socketio.emit('chat message', data)
 
 
 # Since we are deploying with Docker and Flask,
