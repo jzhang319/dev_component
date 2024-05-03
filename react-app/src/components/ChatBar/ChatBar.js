@@ -6,6 +6,7 @@ import { ArrowForwardIcon } from "../../exports";
 function ChatBar() {
   const [response, setResponse] = useState([]);
   const [message, setMessage] = useState("");
+  const [isOpen, setIsOpen] = useState(true);
 
   const socketRef = useRef();
 
@@ -43,6 +44,7 @@ function ChatBar() {
       socketRef.current.emit("chat message", {
         message,
         username: sessionUser.username,
+        time: new Date().toLocaleTimeString(),
       });
       setMessage("");
     }
@@ -53,21 +55,31 @@ function ChatBar() {
   }
 
   return (
-    <div className="flex flex-col bg-black text-white p-4 w-full">
-      <div className="flex justify-center text-3xl my-2 text-yellow-500">
+    <div
+      className={`flex flex-col bg-black text-white p-4 w-full transition-all duration-500 ${
+        isOpen ? "max-h-full" : "max-h-16"
+      }`}
+    >
+      <div
+        className="flex justify-center text-3xl my-2 text-yellow-500 cursor-pointer"
+        onClick={() => setIsOpen(!isOpen)}
+      >
         General Chat
       </div>
-      <div className="overflow-y-auto mt-2 mb-4 flex-grow">
-        {response.map((item, index) => (
-          <div
-            key={index}
-            className="mb-4 p-2 rounded bg-gray-800 flex items-center text-xl"
-          >
-            <p className="font-bold mr-2">{item.username}:</p>
-            <p>{item.message}</p>
-          </div>
-        ))}
-      </div>
+      {isOpen && (
+        <div className="overflow-y-auto mt-2 mb-4 flex-grow">
+          {response.map((item, index) => (
+            <div
+              key={index}
+              className="mb-4 p-2 rounded bg-gray-800 flex items-center text-xl hover:bg-gray-700 transition-colors duration-200"
+            >
+              <p className="font-bold mr-2">{item.username}:</p>
+              <p>{item.message}</p>
+              <p className="ml-auto">{item.time}</p>
+            </div>
+          ))}
+        </div>
+      )}
       <form onSubmit={sendMessage} className="flex">
         <input
           value={message}
@@ -78,7 +90,7 @@ function ChatBar() {
           type="submit"
           className="bg-teal-600 text-white rounded px-3 py-2"
         >
-          <ArrowForwardIcon />
+          Send
         </button>
       </form>
     </div>
