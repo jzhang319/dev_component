@@ -1,8 +1,10 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import Avatar from "@mui/material/Avatar";
 import { SearchIcon } from "../../exports";
 
-const Navbar = ({ sessionUser }) => {
+const Navbar = () => {
+  const sessionUser = useSelector(state => state.session.user);
   let content;
 
   return (

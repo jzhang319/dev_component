@@ -15,23 +15,25 @@ function App() {
   }, [dispatch]);
 
   return (
-    <>
-      <Navbar/>
-      {isLoaded && (
-        <Switch>
-          <Route path="/login" >
-            <LoginFormPage />
-          </Route>
-          <Route path="/signup">
-            <SignupFormPage />
-          </Route>
+    <div className="app flex flex-col h-screen w-full">
+      <Navbar />
+      <div className="content flex-grow">
+        {isLoaded && (
+          <Switch>
+            <Route path="/login">
+              <LoginFormPage />
+            </Route>
+            <Route path="/signup">
+              <SignupFormPage />
+            </Route>
 
-          <Route path="/">
-            <Home/>
-          </Route>
-        </Switch>
-      )}
-    </>
+            <Route path="/">
+              <Home />
+            </Route>
+          </Switch>
+        )}
+      </div>
+    </div>
   );
 }
 

@@ -8,6 +8,7 @@ export {default as Navbar} from './components/navbar/Navbar'
 export {default as LeftBar} from './components/sidebar/Sidebar'
 export {default as Feed} from './components/feed/Feed'
 export {default as List} from './components/list/List'
+export {default as ChatBar} from './components/ChatBar/ChatBar.js'
 
 // Icon export
 export {default as SearchIcon} from "@mui/icons-material/Search"

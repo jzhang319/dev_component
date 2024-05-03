@@ -2,3 +2,13 @@
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
+
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+.content {
+  display: flex;
+  flex-grow: 1;
+}
