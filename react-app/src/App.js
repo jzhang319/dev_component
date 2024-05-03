@@ -10,6 +10,7 @@ import { Home, Navbar } from "./exports";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+
   useEffect(() => {
     dispatch(authenticate()).then(() => setIsLoaded(true));
   }, [dispatch]);
@@ -20,16 +21,19 @@ function App() {
       <div className="content flex-grow">
         {isLoaded && (
           <Switch>
-            <Route path="/login">
+
+            {/* <Route path="/login">
               <LoginFormPage />
             </Route>
+
             <Route path="/signup">
               <SignupFormPage />
-            </Route>
+            </Route> */}
 
             <Route path="/">
               <Home />
             </Route>
+
           </Switch>
         )}
       </div>
