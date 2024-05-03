@@ -72,7 +72,7 @@ const Navbar = () => {
           />
           {dropdownVisible && (
             <div
-              className="absolute top-full right-10 flex flex-col bg-slate-200 rounded-md shadow-lg py-2 w-48"
+              className="absolute gap-4 top-full right-10 flex flex-col bg-slate-200 rounded-md shadow-lg py-2 w-48"
               ref={ulRef}
             >
               {sessionUser ? (
@@ -89,28 +89,41 @@ const Navbar = () => {
                 </>
               ) : (
                 <>
-                  <div className="cursor-pointer text-2xl px-4 py-2 hover:bg-teal-600 hover:text-yellow-500">
-                    <OpenModalButton
-                      buttonText="Login"
-                      onItemClick={(e) => {
-                        closeMenu(e);
-                        setDropdownVisible(false);
-                      }}
-                      modalComponent={<LoginFormModal />}
-                      // icon={}
-                    />
-                  </div>
-                  <div className="cursor-pointer text-2xl px-4 py-2 hover:bg-teal-600 hover:text-yellow-500">
-                    <OpenModalButton
-                      buttonText="Sign Up"
-                      onItemClick={() => {
-                        closeMenu();
-                        setDropdownVisible(false);
-                      }}
-                      modalComponent={<SignupFormModal />}
-                      // icon={}
-                    />
-                  </div>
+                  {/* <div
+                    className="cursor-pointer text-2xl px-4 py-2 hover:bg-teal-600 hover:text-yellow-500"
+                    onClick={(e) => {
+                      closeMenu(e);
+                      setDropdownVisible(false);
+                    }}
+                  > */}
+                  <OpenModalButton
+                    buttonText="Login"
+                    onItemClick={(e) => {
+                      closeMenu(e);
+                      setDropdownVisible(false);
+                    }}
+                    modalComponent={<LoginFormModal />}
+                    // icon={}
+                    className="cursor-pointer text-2xl px-4 py-2 hover:bg-teal-600 hover:text-yellow-500"
+                  />
+                  {/* </div> */}
+                  {/* <div
+                    className="cursor-pointer text-2xl px-4 py-2 hover:bg-teal-600 hover:text-yellow-500"
+                    onClick={() => {
+                      closeMenu();
+                      setDropdownVisible(false);
+                    }}
+                  > */}
+                  <OpenModalButton
+                    buttonText="Sign Up"
+                    onItemClick={() => {
+                      closeMenu();
+                      setDropdownVisible(false);
+                    }}
+                    modalComponent={<SignupFormModal />}
+                    // icon={}
+                  />
+                  {/* </div> */}
                 </>
               )}
             </div>
