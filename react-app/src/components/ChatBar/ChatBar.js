@@ -7,8 +7,10 @@ function ChatBar() {
   const [response, setResponse] = useState([]);
   const [message, setMessage] = useState("");
   const [isOpen, setIsOpen] = useState(true);
+  const [hasUnreadMessages, setHasUnreadMessages] = useState(false);
 
   const socketRef = useRef();
+  const endOfMessagesRef = useRef(null);
 
   const sessionUser = useSelector((state) => state.session.user);
 
@@ -28,16 +30,19 @@ function ChatBar() {
         // console.log("Updated response:", updatedResponse);
         return updatedResponse;
       });
+      if (!isOpen) {
+        setHasUnreadMessages(true);
+      }
     });
 
-    // setResponse(["Test message"]);
+    endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
 
     return () => {
       if (socketRef.current) {
         socketRef.current.disconnect();
       }
     };
-  }, []);
+  }, [response, isOpen]);
 
   // console.log("Response state:", response);
 
@@ -53,6 +58,13 @@ function ChatBar() {
       setMessage("");
     }
   };
+  const toggleChat = () => {
+    setIsOpen(!isOpen);
+
+    if (!isOpen) {
+      setHasUnreadMessages(false);
+    }
+  };
 
   if (!sessionUser) {
     return null;
@@ -60,15 +72,16 @@ function ChatBar() {
 
   return (
     <div
-      className={`flex flex-col bg-black text-white p-4 w-full transition-all duration-500 ${
-        isOpen ? "max-h-full" : "max-h-20"
-      }`}
+      className={`border rounded-md flex flex-col bg-black text-white p-4 w-1/4 transition-all duration-500 ${
+        isOpen ? "h-[calc(100vh-90px)]" : "h-35"
+      } absolute right-1 bottom-1 opacity-90`}
     >
       <div
         className="flex justify-center text-3xl my-2 text-yellow-500 cursor-pointer"
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={toggleChat}
       >
         General Chat
+        {hasUnreadMessages && <span className="text-red-500 ml-2">•</span>}
       </div>
       {isOpen && (
         <div className="overflow-y-auto mt-2 mb-4 flex-grow">
@@ -82,6 +95,7 @@ function ChatBar() {
               <p className="ml-auto">{item.time}</p>
             </div>
           ))}
+          <div ref={endOfMessagesRef} />
         </div>
       )}
       <form onSubmit={sendMessage} className="flex">
