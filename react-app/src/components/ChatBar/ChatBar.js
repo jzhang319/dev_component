@@ -6,7 +6,7 @@ import { ArrowForwardIcon } from "../../exports";
 function ChatBar() {
   const [response, setResponse] = useState([]);
   const [message, setMessage] = useState("");
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const [hasUnreadMessages, setHasUnreadMessages] = useState(false);
 
   const socketRef = useRef();
@@ -77,11 +77,14 @@ function ChatBar() {
       } absolute right-1 bottom-1 opacity-90`}
     >
       <div
-        className="flex justify-center text-3xl my-2 text-yellow-500 cursor-pointer"
+        className="flex items-center text-3xl my-2 ml-1 text-yellow-500 cursor-pointer"
         onClick={toggleChat}
       >
-        General Chat
-        {hasUnreadMessages && <span className="text-red-500 ml-2">•</span>}
+        <div>Messages</div>
+        {hasUnreadMessages && (
+          // <span className="text-red-500 ml-2">•</span>
+          <div className="bg-red-500 rounded-full w-3 h-3 ml-2 animate-blink"></div>
+        )}
       </div>
       {isOpen && (
         <div className="overflow-y-auto mt-2 mb-4 flex-grow">

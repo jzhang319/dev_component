@@ -1,14 +1,14 @@
 .feed{
   grid-column-start: 2;
   grid-column-end: 6;
-  background-color: gray;
+  background-color: #1f2937; // same as gray-800
   place-content: center;
   // justify-content: center;
   // border-right: .3rem solid $searchbar_color;
 
   &__wrapper{
-    margin-left: 1rem;
-    margin-right: 1rem;
+    // margin-left: 2rem;
+    // margin-right: 2rem;
     // max-width: 70rem;
     // min-width: 25rem;
     background-color: #fff;

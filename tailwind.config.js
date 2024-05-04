@@ -11,6 +11,16 @@ module.exports = {
         45: "11.25rem", // 1rem = 16px, so 11.25rem = 180px
         50: "12.5rem", // 1rem = 16px, so 12.5rem = 200px
       },
+      keyframes: {
+        blink: {
+          "0%": { opacity: "0" },
+          "50%": { opacity: "1" },
+          "100%": { opacity: "0" },
+        },
+      },
+      animation: {
+        blink: "blink 2s infinite",
+      },
     },
     screens: {
       "2xl": { max: "1535px" },

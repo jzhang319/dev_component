@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Avatar from "@mui/material/Avatar";
-import { SearchIcon } from "../../exports";
+import { SearchIcon, LogoutIcon, LoginIcon, SignupIcon } from "../../exports";
 import { logout } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
@@ -84,47 +84,41 @@ const Navbar = () => {
                     className="cursor-pointer text-2xl px-4 py-2 hover:bg-teal-600 hover:text-yellow-500"
                     onClick={handleLogout}
                   >
+                    <LogoutIcon className="mx-2" />
                     Logout
                   </span>
                 </>
               ) : (
-                <>
-                  {/* <div
-                    className="cursor-pointer text-2xl px-4 py-2 hover:bg-teal-600 hover:text-yellow-500"
-                    onClick={(e) => {
-                      closeMenu(e);
-                      setDropdownVisible(false);
-                    }}
-                  > */}
+                <div className="flex flex-col items-start w-full">
                   <OpenModalButton
-                    buttonText="Login"
+                    buttonText={
+                      <div className="flex items-center">
+                        <LoginIcon className="mx-2" />
+                        <div className="text-2xl">Login</div>
+                      </div>
+                    }
                     onItemClick={(e) => {
                       closeMenu(e);
                       setDropdownVisible(false);
                     }}
                     modalComponent={<LoginFormModal />}
-                    // icon={}
-                    className="cursor-pointer text-2xl px-4 py-2 hover:bg-teal-600 hover:text-yellow-500"
+                    className="cursor-pointer px-4 py-2 hover:bg-teal-600 hover:text-yellow-500 w-full"
                   />
-                  {/* </div> */}
-                  {/* <div
-                    className="cursor-pointer text-2xl px-4 py-2 hover:bg-teal-600 hover:text-yellow-500"
-                    onClick={() => {
-                      closeMenu();
-                      setDropdownVisible(false);
-                    }}
-                  > */}
                   <OpenModalButton
-                    buttonText="Sign Up"
+                    buttonText={
+                      <div className="flex items-center">
+                        <SignupIcon className="mx-2" />
+                        <div className="text-2xl">Sign Up</div>
+                      </div>
+                    }
                     onItemClick={() => {
                       closeMenu();
                       setDropdownVisible(false);
                     }}
                     modalComponent={<SignupFormModal />}
-                    // icon={}
+                    className="cursor-pointer px-4 py-2 hover:bg-teal-600 hover:text-yellow-500 w-full"
                   />
-                  {/* </div> */}
-                </>
+                </div>
               )}
             </div>
           )}

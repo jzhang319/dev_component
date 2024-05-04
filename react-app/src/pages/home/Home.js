@@ -6,7 +6,7 @@ const Home = () => {
     <div className='home flex flex-grow w-full'>
       {/* <LeftBar/> */}
       <Feed />
-      <ChatBar/>
+      {/* <ChatBar/> */}
     </div>
   )
 }

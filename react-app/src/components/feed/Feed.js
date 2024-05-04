@@ -115,9 +115,9 @@ const Feed = ({ show, setShow, text }) => {
         </div> */}
 
         {allComponents?.map((component) => (
-          <div key={component.id} className="feed__component">
+          <div key={component.id} className="feed__component m-10">
             {copiedComponentId === component.id ? (
-              <button>
+              <button className="ml-2 mt-2">
                 <span>
                   <ClipboardIcon />
                 </span>
@@ -132,6 +132,7 @@ const Feed = ({ show, setShow, text }) => {
                     setCopiedComponentId(null);
                   }, 3000);
                 }}
+                className="ml-2 mt-2"
               >
                 <span>
                   <ClipboardIcon />
@@ -139,7 +140,7 @@ const Feed = ({ show, setShow, text }) => {
                 Copy Code
               </button>
             )}
-            <h3>{component.type}</h3>
+            <h2 className="ml-3">{component.type}</h2>
             <SyntaxHighlighter
               language="jsx"
               style={coldarkDark}

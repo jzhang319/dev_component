@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import { authenticate } from "./store/session";
-import { LeftBar, Feed, Home, Navbar } from "./exports";
+import { LeftBar, Feed, Home, Navbar, ChatBar } from "./exports";
 // import Navigation from "./components/Navigation";
 
 function App() {
@@ -17,6 +17,7 @@ function App() {
     <div className="app flex flex-col h-screen w-full">
       <Navbar />
       <LeftBar />
+      <ChatBar />
       <div className="content flex-grow">
         {isLoaded && (
           <Switch>
