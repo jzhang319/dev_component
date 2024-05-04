@@ -16,6 +16,7 @@ const Navbar = () => {
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
 
+  // for dropdown menu
   useEffect(() => {
     if (!showMenu) return;
 
@@ -28,6 +29,7 @@ const Navbar = () => {
 
     document.addEventListener("click", closeMenu);
     return () => document.removeEventListener("click", closeMenu);
+
   }, [dispatch, showMenu, dropdownVisible]);
 
   const handleLogout = (e) => {
@@ -49,7 +51,9 @@ const Navbar = () => {
           <input
             type="text"
             className="navbar__center--input"
-            placeholder="Search Components Here ..."
+            placeholder="Search Component Types Here ..."
+            // value={}
+            // onChange={(e) => }
           />
 
           <SearchIcon

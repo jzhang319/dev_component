@@ -1,7 +1,9 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, current_app
 from flask_login import login_required, current_user
-from app.models import Component, db
+from app.models import Component, db, Image
 from flask import request
+from werkzeug.utils import secure_filename
+import os
 import subprocess
 
 component_routes = Blueprint('components', __name__)
@@ -23,6 +25,7 @@ def create_component():
     Create a new component and returns it as a dictionary
     """
     data = request.form
+    image = request.files['image']
 
     new_component = Component(
         user_id=current_user.id,
@@ -33,7 +36,26 @@ def create_component():
     db.session.add(new_component)
     db.session.commit()
 
+    # Ensure the file is a valid image
+    if image and allowed_file(image.filename):
+        filename = secure_filename(image.filename.replace(" ", "_"))
+        # currently saving image files to UPLOAD_FOLDER, will upload to GCP later on after it's setup
+        image.save(os.path.join(current_app.config['UPLOAD_FOLDER'], filename))
+
+        new_image = Image(
+            url=os.path.join(current_app.config['UPLOAD_FOLDER'], filename),
+            component_id=new_component.id,
+        )
+
+        db.session.add(new_image)
+        db.session.commit()
+
     return new_component.to_dict()
+
+def allowed_file(filename):
+    ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @component_routes.route('/<int:id>', methods=['PUT'])
 @login_required
