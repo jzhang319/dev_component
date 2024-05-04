@@ -61,7 +61,7 @@ function ChatBar() {
   return (
     <div
       className={`flex flex-col bg-black text-white p-4 w-full transition-all duration-500 ${
-        isOpen ? "max-h-full" : "max-h-16"
+        isOpen ? "max-h-full" : "max-h-20"
       }`}
     >
       <div
