@@ -10,14 +10,14 @@ const List = ({text}) => {
       <div className="list__wrapper">
 
         {show ?
-          <div className='list__toggle' >
+          <div className='list__toggle' onClick={() => setShow(false)}>
             <ArrowDownwardIcon className='list__icon' style={{fontSize: '2rem'}}/>
-            <span className="list__button"  onClick={() => setShow(false)}>{text}</span>
+            <span className="list__button" >{text}</span>
           </div>
           :
-        <div className='list__toggle' >
+        <div className='list__toggle'  onClick={() => setShow(true)}>
           <ArrowForwardIcon className='list__icon' style={{fontSize: '2rem'}}/>
-          <span className="list__button"  onClick={() => setShow(true)}>{text}</span>
+          <span className="list__button" >{text}</span>
         </div>
         }
       </div>
