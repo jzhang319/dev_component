@@ -74,7 +74,7 @@ function ChatBar() {
     <div
       className={`border rounded-md flex flex-col bg-black text-white p-4 w-1/4 transition-all duration-500 ${
         isOpen ? "h-[calc(100vh-90px)]" : "h-35"
-      } absolute right-1 bottom-1 opacity-90`}
+      } fixed right-1 bottom-1 opacity-90`}
     >
       <div
         className="flex items-center text-3xl my-2 ml-1 text-yellow-500 cursor-pointer"

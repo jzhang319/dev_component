@@ -5,12 +5,33 @@ from sqlalchemy.sql import text
 # Adds a demo user, you can add other users here if you want
 def seed_components():
     new1 = Component(
-        user_id=1, type='navbar', code='<div><nav>Navbar</nav></div>')
+        user_id=1, type='navbar', code='<div><nav>Navbar</nav><nav>Navbar</nav></div>')
     new2 = Component(
+        user_id=1, type='button', code='<div><button>Click me</button><button>Click me</button></div>')
+    new3 = Component(
+        user_id=1, type='navbar', code='<div><nav>Navbar</nav><nav>Navbar</nav></div>')
+    new4 = Component(
         user_id=1, type='button', code='<div><button>Click me</button></div>')
+    new4 = Component(
+        user_id=1, type='navbar', code='<div><nav>Navbar</nav><nav>Navbar</nav></div>')
+    new5 = Component(
+        user_id=2, type='button', code='<div><button>Click me</button><button>Click me</button></div>')
+    new6 = Component(
+        user_id=2, type='navbar', code='<div><nav>Navbar</nav><nav>Navbar</nav></div>')
+    new7 = Component(
+        user_id=2, type='navbar', code='<div><nav>Navbar</nav><nav>Navbar</nav></div>')
+    new8 = Component(
+        user_id=2, type='navbar', code='<div><nav>Navbar</nav><nav>Navbar</nav></div>')
+
 
     db.session.add(new1)
     db.session.add(new2)
+    db.session.add(new3)
+    db.session.add(new4)
+    db.session.add(new5)
+    db.session.add(new6)
+    db.session.add(new7)
+    db.session.add(new8)
     db.session.commit()
 
 

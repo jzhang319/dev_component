@@ -85,7 +85,7 @@ const Feed = ({ show, setShow, text }) => {
 </div>`;
 
   return (
-    <div className="feed">
+    <div className="feed mx-auto my-auto">
       <div className="feed__wrapper">
         {/* <div>
           <p>Example code</p>

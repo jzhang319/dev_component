@@ -16,13 +16,15 @@ function App() {
   return (
     <div className="app flex flex-col h-screen w-full">
       <Navbar />
-      <LeftBar />
+      <LeftBar className="h-screen" />
       <ChatBar />
-      <div className="content flex-grow">
+      <div className="content h-screen overflow-auto mt-4">
         {isLoaded && (
           <Switch>
             <Route exact path="/components/:componentID">
-              <Feed />
+              <div className="w-3/5 h-full flex flex-col justify-center items-center mx-auto">
+                <Feed />
+              </div>
             </Route>
 
             <Route exact path="/">
