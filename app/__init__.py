@@ -9,7 +9,8 @@ from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .seeds import seed_commands
 from .config import Config
-from flask_socketio import SocketIO
+# from flask_socketio import SocketIO
+from .socket import socketio
 
 app = Flask(__name__, static_folder='../react-app/build', static_url_path='/')
 
@@ -31,18 +32,18 @@ app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 db.init_app(app)
 Migrate(app, db)
-
+socketio.init_app(app)
 
 # Application Security
 CORS(app)
 
-cors_origins = "*" if os.environ.get('FLASK_ENV') != 'production' else ["http://devcomponent.onrender.com", "https://devcomponent.onrender.com"]
-socketio = SocketIO(app, cors_allowed_origins=cors_origins)
+# cors_origins = "*" if os.environ.get('FLASK_ENV') != 'production' else ["http://devcomponent.onrender.com", "https://devcomponent.onrender.com"]
+# socketio = SocketIO(app, cors_allowed_origins=cors_origins)
 
-@socketio.on('chat message')
-def handle_message(data):
-    # print(f"Received message(server): {data['message']} from {data['username']}")
-    socketio.emit('chat message', data)
+# @socketio.on('chat message')
+# def handle_message(data):
+#     # print(f"Received message(server): {data['message']} from {data['username']}")
+#     socketio.emit('chat message', data)
 
 
 # Since we are deploying with Docker and Flask,
@@ -99,3 +100,6 @@ def react_root(path):
 @app.errorhandler(404)
 def not_found(e):
     return app.send_static_file('index.html')
+
+if __name__ == '__main__':
+    socketio.run(app, debug=True)
