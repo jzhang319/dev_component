@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { atomOneDark } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import {
@@ -53,9 +53,21 @@ import {
   xonokai,
   zTouch,
 } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { useDispatch, useSelector } from "react-redux";
+import * as componentActions from "../../store/component";
 
 const Feed = ({ show, setShow, text }) => {
+  const dispatch = useDispatch();
+
+  const allComponents = useSelector((state) => Object.values(state.component));
+  // console.log(allComponents, " <----- allComponents");
+
   const [copy, setCopy] = useState(false);
+  const [copiedComponentId, setCopiedComponentId] = useState(null);
+
+  useEffect(() => {
+    dispatch(componentActions.getComponentsThunk());
+  }, [dispatch]);
 
   let content = `<div className="list__wrapper">
 
@@ -71,10 +83,11 @@ const Feed = ({ show, setShow, text }) => {
   </div>
   }
 </div>`;
+
   return (
     <div className="feed">
       <div className="feed__wrapper">
-        <div>
+        {/* <div>
           <p>Example code</p>
           {copy ? (
             <button>
@@ -99,15 +112,44 @@ const Feed = ({ show, setShow, text }) => {
               Copy Code
             </button>
           )}
-        </div>
-        <SyntaxHighlighter
-          language="jsx"
-          style={coldarkDark}
-          customStyle={{ padding: "2.5rem" }}
-          wrapLongLines={true}
-        >
-          {content}
-        </SyntaxHighlighter>
+        </div> */}
+
+        {allComponents?.map((component) => (
+          <div key={component.id} className="feed__component">
+            {copiedComponentId === component.id ? (
+              <button>
+                <span>
+                  <ClipboardIcon />
+                </span>
+                Copied!
+              </button>
+            ) : (
+              <button
+                onClick={() => {
+                  navigator.clipboard.writeText(component.code);
+                  setCopiedComponentId(component.id);
+                  setTimeout(() => {
+                    setCopiedComponentId(null);
+                  }, 3000);
+                }}
+              >
+                <span>
+                  <ClipboardIcon />
+                </span>
+                Copy Code
+              </button>
+            )}
+            <h3>{component.type}</h3>
+            <SyntaxHighlighter
+              language="jsx"
+              style={coldarkDark}
+              customStyle={{ padding: "2.5rem" }}
+              wrapLongLines={true}
+            >
+              {component.code}
+            </SyntaxHighlighter>
+          </div>
+        ))}
       </div>
     </div>
   );
