@@ -1,10 +1,10 @@
-import React from 'react'
-import {List} from '../../exports'
-import { ArrowDownwardIcon, ArrowForwardIcon } from '../../exports'
+import React from "react";
+import { List } from "../../exports";
+import { ArrowDownwardIcon, ArrowForwardIcon } from "../../exports";
 
 const Sidebar = () => {
   return (
-    <div className="sidebar">
+    <div className="sidebar absolute flex-col h-full w-1/5 mt-25 z-50">
       <div className="sidebar__wrapper mt-8">
         <List text="Getting Started" />
         <List text="Components" />
@@ -13,6 +13,6 @@ const Sidebar = () => {
       </div>
     </div>
   );
-}
+};
 
-export default Sidebar
+export default Sidebar;

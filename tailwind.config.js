@@ -2,7 +2,11 @@
 module.exports = {
   content: ["./react-app/src/**/*.{html,js}"],
   theme: {
-    extend: {},
+    extend: {
+      spacing: {
+        25: "6.25rem", // 1rem = 16px, so 6.25rem = 100px
+      },
+    },
     screens: {
       "2xl": { max: "1535px" },
       // => @media (max-width: 1535px) { ... }
@@ -18,9 +22,6 @@ module.exports = {
 
       sm: { max: "639px" },
       // => @media (max-width: 639px) { ... }
-    },
-    spacing: {
-      25: "6.25rem", // 1rem = 16px, so 6.25rem = 100px
     },
   },
   plugins: [],

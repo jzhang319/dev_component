@@ -77,9 +77,9 @@ const Navbar = () => {
             >
               {sessionUser ? (
                 <>
-                  <span className="cursor-pointer text-2xl px-4 py-2 hover:bg-teal-600 hover:text-yellow-500">
+                  {/* <span className="cursor-pointer text-2xl px-4 py-2 hover:bg-teal-600 hover:text-yellow-500">
                     Profile
-                  </span>
+                  </span> */}
                   <span
                     className="cursor-pointer text-2xl px-4 py-2 hover:bg-teal-600 hover:text-yellow-500"
                     onClick={handleLogout}

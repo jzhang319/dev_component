@@ -4,7 +4,7 @@ import { LeftBar, Feed, ChatBar } from '../../exports'
 const Home = () => {
   return (
     <div className='home flex flex-grow w-full'>
-      <LeftBar/>
+      {/* <LeftBar/> */}
       <Feed />
       <ChatBar/>
     </div>

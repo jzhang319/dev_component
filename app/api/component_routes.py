@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify
 from flask_login import login_required, current_user
 from app.models import Component, db
 from flask import request
+import subprocess
 
 component_routes = Blueprint('components', __name__)
 
@@ -59,10 +60,24 @@ def delete_component(id):
     return {'message': 'Component deleted'}
 
 
+def format_code(code):
+    print(f"Input code: {code}")
+    result = subprocess.run(['prettier', '--parser', 'html'], input=code, text=True, capture_output=True)
+    if result.returncode != 0:
+        raise Exception(f"prettier failed: {result.stderr}")
+    print(f"Output code: {result.stdout}")
+    return result.stdout
+
 @component_routes.route('/')
-def components():
-    """
-    Query for all components and returns them in a list of component dictionaries
-    """
+def get_components():
     components = Component.query.all()
-    return {'components': [component.to_dict() for component in components]}
+
+    formatted_components = [
+        {
+            **component.to_dict(),
+            'code': format_code(component.to_dict()['code']),
+        }
+        for component in components
+    ]
+
+    return jsonify(formatted_components)
