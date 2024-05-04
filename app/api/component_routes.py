@@ -91,7 +91,6 @@ def delete_component(id):
 
     return {'message': 'Component deleted'}
 
-
 def format_code(code):
     print(f"Input code: {code}")
     result = subprocess.run(['prettier', '--parser', 'html'], input=code, text=True, capture_output=True)
@@ -100,8 +99,23 @@ def format_code(code):
     print(f"Output code: {result.stdout}")
     return result.stdout
 
+@component_routes.route('/<int:id>', methods=['GET'])
+def get_component(id):
+    component = Component.query.get(id)
+    if component is None:
+        return {'errors': 'Component not found'}, 404
+
+    print(component , ' <---- server side - component')
+
+    formatted_component = {
+        **component.to_dict(),
+        'code': format_code(component.to_dict()['code']),
+    }
+
+    return jsonify(formatted_component)
+
 @component_routes.route('/')
-def get_components():
+def get_all_components():
     components = Component.query.all()
 
     formatted_components = [

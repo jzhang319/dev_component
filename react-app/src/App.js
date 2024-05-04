@@ -18,12 +18,19 @@ function App() {
       <Navbar />
       <LeftBar className="h-screen" />
       <ChatBar />
-      <div className="content h-screen overflow-auto mt-4">
+      <div
+        className="content h-screen overflow-auto mt-4"
+        style={{
+          scrollbarWidth: "none",
+          msOverflowStyle: "none",
+          scrollbarColor: "transparent transparent",
+        }}
+      >
         {isLoaded && (
           <Switch>
             <Route exact path="/components/:componentID">
               <div className="w-3/5 h-full flex flex-col justify-center items-center mx-auto">
-                <Feed />
+                {/* <Feed /> */}
               </div>
             </Route>
 
