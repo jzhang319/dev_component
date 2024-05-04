@@ -86,7 +86,7 @@ const Feed = ({ show, setShow, text }) => {
 
   return (
     <div className="feed mx-auto my-auto">
-      <div className="feed__wrapper">
+      <div className="feed__wrapper space-y-4">
         {/* <div>
           <p>Example code</p>
           {copy ? (
@@ -115,32 +115,31 @@ const Feed = ({ show, setShow, text }) => {
         </div> */}
 
         {allComponents?.map((component) => (
-          <div key={component.id} className="feed__component m-10">
-            {copiedComponentId === component.id ? (
-              <button className="ml-2 mt-2">
-                <span>
-                  <ClipboardIcon />
-                </span>
-                Copied!
-              </button>
-            ) : (
-              <button
-                onClick={() => {
-                  navigator.clipboard.writeText(component.code);
-                  setCopiedComponentId(component.id);
-                  setTimeout(() => {
-                    setCopiedComponentId(null);
-                  }, 3000);
-                }}
-                className="ml-2 mt-2"
-              >
-                <span>
-                  <ClipboardIcon />
-                </span>
-                Copy Code
-              </button>
-            )}
-            <h2 className="ml-3">{component.type}</h2>
+          <div key={component.id} className="feed__component p-10 bg-gray-800">
+            <div className="flex justify-between">
+              <h3 className="ml-3 text-3xl">{component.type}</h3>
+              {copiedComponentId === component.id ? (
+                <button className="m-2">
+                  <ClipboardIcon className="mr-1" />
+                  Copied!
+                </button>
+              ) : (
+                <button
+                  onClick={() => {
+                    navigator.clipboard.writeText(component.code);
+                    setCopiedComponentId(component.id);
+                    setTimeout(() => {
+                      setCopiedComponentId(null);
+                    }, 3000);
+                  }}
+                  className="m-2"
+                >
+                  <ClipboardIcon className="mr-1" />
+                  Copy Code
+                </button>
+              )}
+            </div>
+
             <SyntaxHighlighter
               language="jsx"
               style={coldarkDark}
