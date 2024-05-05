@@ -1,4 +1,4 @@
-from .db import db, environment, SCHEMA
+from .db import db, environment, SCHEMA, add_prefix_for_prod
 
 class Image(db.Model):
     __tablename__ = 'images'
@@ -11,7 +11,7 @@ class Image(db.Model):
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, server_default=db.func.now(), server_onupdate=db.func.now())
 
-    component_id = db.Column(db.Integer, db.ForeignKey('components.id'), nullable=False)
+    component_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('components.id'), nullable=False))
     component = db.relationship('Component', back_populates='images')
 
     def to_dict(self):
