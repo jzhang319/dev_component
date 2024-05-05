@@ -44,8 +44,6 @@ function ChatBar() {
     };
   }, [response, isOpen]);
 
-  // console.log("Response state:", response);
-
   const sendMessage = (e) => {
     e.preventDefault();
     if (message) {
@@ -82,7 +80,6 @@ function ChatBar() {
       >
         <div>Messages</div>
         {hasUnreadMessages && (
-          // <span className="text-red-500 ml-2">•</span>
           <div className="bg-red-500 rounded-full w-3 h-3 ml-2 animate-blink"></div>
         )}
       </div>

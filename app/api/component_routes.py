@@ -92,11 +92,11 @@ def delete_component(id):
     return {'message': 'Component deleted'}
 
 def format_code(code):
-    print(f"Input code: {code}")
+    # print(f"Input code: {code}")
     result = subprocess.run(['prettier', '--parser', 'html'], input=code, text=True, capture_output=True)
     if result.returncode != 0:
         raise Exception(f"prettier failed: {result.stderr}")
-    print(f"Output code: {result.stdout}")
+    # print(f"Output code: {result.stdout}")
     return result.stdout
 
 @component_routes.route('/<int:id>', methods=['GET'])
@@ -105,7 +105,7 @@ def get_component(id):
     if component is None:
         return {'errors': 'Component not found'}, 404
 
-    print(component , ' <---- server side - component')
+    # print(component , ' <---- server side - component')
 
     formatted_component = {
         **component.to_dict(),

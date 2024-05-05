@@ -12,17 +12,32 @@ def seed_components():
         user_id=1, type='navbar', code='<div><nav>Navbar</nav><nav>Navbar</nav></div>')
     new4 = Component(
         user_id=1, type='button', code='<div><button>Click me</button></div>')
-    new4 = Component(
-        user_id=1, type='navbar', code='<div><nav>Navbar</nav><nav>Navbar</nav></div>')
     new5 = Component(
-        user_id=2, type='button', code='<div><button>Click me</button><button>Click me</button></div>')
+        user_id=1, type='navbar', code='<div><nav>Navbar</nav><nav>Navbar</nav></div>')
     new6 = Component(
-        user_id=2, type='navbar', code='<div><nav>Navbar</nav><nav>Navbar</nav></div>')
+        user_id=2, type='button', code='''
+        <div><button>Click me</button><button>Click me</button></div>
+        ''')
     new7 = Component(
         user_id=2, type='navbar', code='<div><nav>Navbar</nav><nav>Navbar</nav></div>')
     new8 = Component(
         user_id=2, type='navbar', code='<div><nav>Navbar</nav><nav>Navbar</nav></div>')
-
+    new9 = Component(
+        user_id=2, type='navbar', code='<div><nav>Navbar</nav><nav>Navbar</nav></div>')
+    new10 = Component(
+        user_id=2,
+        type='navbar',
+        code='''
+        <div className="sidebar absolute flex-col h-full w-1/5 mt-25 z-50">
+            <div className="sidebar__wrapper mt-8">
+                <List text="Getting Started" />
+                <List text="All Components" />
+                <List text="My Components" />
+                <List text="Liked Components" />
+            </div>
+        </div>
+        '''
+        )
 
     db.session.add(new1)
     db.session.add(new2)
@@ -32,6 +47,8 @@ def seed_components():
     db.session.add(new6)
     db.session.add(new7)
     db.session.add(new8)
+    db.session.add(new9)
+    db.session.add(new10)
     db.session.commit()
 
 

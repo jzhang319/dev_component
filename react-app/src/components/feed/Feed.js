@@ -87,33 +87,6 @@ const Feed = ({ show, setShow, text }) => {
   return (
     <div className="feed mx-auto my-auto">
       <div className="feed__wrapper space-y-4">
-        {/* <div>
-          <p>Example code</p>
-          {copy ? (
-            <button>
-              <span>
-                <ClipboardIcon />
-              </span>
-              Copied!
-            </button>
-          ) : (
-            <button
-              onClick={() => {
-                navigator.clipboard.writeText(content);
-                setCopy(true);
-                setTimeout(() => {
-                  setCopy(false);
-                }, 3000);
-              }}
-            >
-              <span>
-                <ClipboardIcon />
-              </span>
-              Copy Code
-            </button>
-          )}
-        </div> */}
-
         {allComponents?.map((component) => (
           <div key={component.id} className="feed__component p-10 bg-gray-800">
             <div className="flex justify-between">
