@@ -13,7 +13,8 @@ class Component(db.Model):
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, server_default=db.func.now(), server_onupdate=db.func.now())
 
-    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id'), postgresql_nullable=False))
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
+
 
     user = db.relationship('User', back_populates='components')
 

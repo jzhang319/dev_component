@@ -11,7 +11,7 @@ class Image(db.Model):
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, server_default=db.func.now(), server_onupdate=db.func.now())
 
-    component_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('components.id'), postgresql_nullable=False))
+    component_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('components.id')), nullable=False)
 
     component = db.relationship('Component', back_populates='images')
 
