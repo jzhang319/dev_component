@@ -91,13 +91,6 @@ def delete_component(id):
 
     return {'message': 'Component deleted'}
 
-def format_code(code):
-    # print(f"Input code: {code}")
-    result = subprocess.run(['prettier', '--parser', 'html'], input=code, text=True, capture_output=True)
-    if result.returncode != 0:
-        raise Exception(f"prettier failed: {result.stderr}")
-    # print(f"Output code: {result.stdout}")
-    return result.stdout
 
 from sqlalchemy.orm import joinedload
 
@@ -109,7 +102,6 @@ def get_component(id):
 
     formatted_component = {
         **component.to_dict(),
-        'code': format_code(component.to_dict()['code']),
         'user': {
             'id': component.user.id,
             'username': component.user.username,
@@ -125,7 +117,6 @@ def get_all_components():
     formatted_components = [
         {
             **component.to_dict(),
-            'code': format_code(component.to_dict()['code']),
             'user': {
                 'id': component.user.id,
                 'username': component.user.username,
