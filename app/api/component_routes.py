@@ -99,29 +99,37 @@ def format_code(code):
     # print(f"Output code: {result.stdout}")
     return result.stdout
 
+from sqlalchemy.orm import joinedload
+
 @component_routes.route('/<int:id>', methods=['GET'])
 def get_component(id):
-    component = Component.query.get(id)
+    component = Component.query.options(joinedload('user')).get(id)
     if component is None:
         return {'errors': 'Component not found'}, 404
-
-    # print(component , ' <---- server side - component')
 
     formatted_component = {
         **component.to_dict(),
         'code': format_code(component.to_dict()['code']),
+        'user': {
+            'id': component.user.id,
+            'username': component.user.username,
+        },
     }
 
     return jsonify(formatted_component)
 
 @component_routes.route('/')
 def get_all_components():
-    components = Component.query.all()
+    components = Component.query.options(joinedload('user')).all()
 
     formatted_components = [
         {
             **component.to_dict(),
             'code': format_code(component.to_dict()['code']),
+            'user': {
+                'id': component.user.id,
+                'username': component.user.username,
+            },
         }
         for component in components
     ]

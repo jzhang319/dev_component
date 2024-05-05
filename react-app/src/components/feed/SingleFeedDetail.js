@@ -54,59 +54,55 @@ import {
 const SingleFeedDetail = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const numericId = Number(id);
-  const allComponents = useSelector((state) => state.component);
+  const component = useSelector((state) => state.component);
   const [copiedComponentId, setCopiedComponentId] = useState(null);
 
   useEffect(() => {
-    dispatch(componentActions.getComponentsThunk()).catch((error) => {
+    dispatch(componentActions.getComponentThunk(id)).catch((error) => {
       console.error("Error fetching components:", error);
     });
-  }, [dispatch]);
-
-  const component = Object.values(allComponents).reduce(
-    (foundComponent, currentComponent) => {
-      return currentComponent.id === numericId
-        ? currentComponent
-        : foundComponent;
-    },
-    null
-  );
+  }, [dispatch, id]);
 
   return (
-    <div key={component?.id} className="feed__component p-10 bg-gray-800">
-      <div className="flex justify-between">
-        <h3 className="ml-3 text-3xl">{component?.type}</h3>
-        {copiedComponentId === component?.id ? (
-          <button className="m-2">
-            <ClipboardIcon className="mr-1" />
-            Copied!
-          </button>
-        ) : (
-          <button
-            onClick={() => {
-              navigator.clipboard.writeText(component?.code);
-              setCopiedComponentId(component?.id);
-              setTimeout(() => {
-                setCopiedComponentId(null);
-              }, 3000);
-            }}
-            className="m-2"
-          >
-            <ClipboardIcon className="mr-1" />
-            Copy Code
-          </button>
-        )}
-      </div>
-
-      <SyntaxHighlighter
-        language="jsx"
-        style={coldarkDark}
-        customStyle={{ padding: "2.5rem" }}
-        wrapLongLines={true}
+    <div className="feed flex w-full">
+      <div
+        key={component?.id}
+        className="feed__component w-3/4 mx-auto p-10 bg-gray-800"
       >
-        {component?.code}
-      </SyntaxHighlighter>
+        <div className="flex justify-between">
+          <h3 className="ml-3 text-3xl">{component?.type}</h3>
+          <h4 className="ml-3 text-xl">User: {component.user?.username}</h4>
+          {copiedComponentId === component?.id ? (
+            <button className="m-2">
+              <ClipboardIcon className="mr-1" />
+              Copied!
+            </button>
+          ) : (
+            <button
+              onClick={() => {
+                navigator.clipboard.writeText(component?.code);
+                setCopiedComponentId(component?.id);
+                setTimeout(() => {
+                  setCopiedComponentId(null);
+                }, 3000);
+              }}
+              className="m-2"
+            >
+              <ClipboardIcon className="mr-1" />
+              Copy Code
+            </button>
+          )}
+        </div>
+
+        <SyntaxHighlighter
+          language="jsx"
+          style={coldarkDark}
+          customStyle={{ padding: "2.5rem" }}
+          wrapLongLines={true}
+        >
+          {component?.code}
+        </SyntaxHighlighter>
+      </div>
     </div>
   );
 };

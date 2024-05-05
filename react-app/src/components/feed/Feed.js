@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import * as componentActions from "../../store/component";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { atomOneDark } from "react-syntax-highlighter/dist/esm/styles/hljs";
-import {
-  ArrowDownwardIcon,
-  ArrowForwardIcon,
-  ClipboardIcon,
-  check,
-} from "../../exports";
 import {
   coy,
   dark,
@@ -53,8 +50,12 @@ import {
   xonokai,
   zTouch,
 } from "react-syntax-highlighter/dist/esm/styles/prism";
-import { useDispatch, useSelector } from "react-redux";
-import * as componentActions from "../../store/component";
+import {
+  ArrowDownwardIcon,
+  ArrowForwardIcon,
+  ClipboardIcon,
+  check,
+} from "../../exports";
 
 const Feed = ({ show, setShow, text }) => {
   const dispatch = useDispatch();
@@ -85,43 +86,49 @@ const Feed = ({ show, setShow, text }) => {
 </div>`;
 
   return (
-    <div className="feed mx-auto my-auto">
-      <div className="feed__wrapper space-y-4">
+    <div className="feed mx-auto">
+      <div className="feed__wrapper space-x-4">
         {allComponents?.map((component) => (
-          <div key={component.id} className="feed__component p-10 bg-gray-800">
-            <div className="flex justify-between">
-              <h3 className="ml-3 text-3xl">{component.type}</h3>
-              {copiedComponentId === component.id ? (
-                <button className="m-2">
-                  <ClipboardIcon className="mr-1" />
-                  Copied!
-                </button>
-              ) : (
-                <button
-                  onClick={() => {
-                    navigator.clipboard.writeText(component.code);
-                    setCopiedComponentId(component.id);
-                    setTimeout(() => {
-                      setCopiedComponentId(null);
-                    }, 3000);
-                  }}
-                  className="m-2"
-                >
-                  <ClipboardIcon className="mr-1" />
-                  Copy Code
-                </button>
-              )}
-            </div>
+          <Link to={`/components/${component.id}`} key={component.id}>
+            <div className="feed__component p-10 bg-gray-800 border-2 border-transparent hover:border-secondary hover:border-2 transition-all duration-200">
+              <div className="flex justify-between">
+                <h3 className="ml-3 text-3xl">Type: {component.type}</h3>
+                <h4 className="ml-3 text-xl">
+                  User: {component.user?.username}
+                </h4>
+                {copiedComponentId === component.id ? (
+                  <button className="m-2">
+                    <ClipboardIcon className="mr-1" />
+                    Copied!
+                  </button>
+                ) : (
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      navigator.clipboard.writeText(component.code);
+                      setCopiedComponentId(component.id);
+                      setTimeout(() => {
+                        setCopiedComponentId(null);
+                      }, 3000);
+                    }}
+                    className="m-2"
+                  >
+                    <ClipboardIcon className="mr-1" />
+                    Copy Code
+                  </button>
+                )}
+              </div>
 
-            <SyntaxHighlighter
-              language="jsx"
-              style={coldarkDark}
-              customStyle={{ padding: "2.5rem" }}
-              wrapLongLines={true}
-            >
-              {component.code}
-            </SyntaxHighlighter>
-          </div>
+              <SyntaxHighlighter
+                language="jsx"
+                style={coldarkDark}
+                customStyle={{ padding: "2.5rem" }}
+                wrapLongLines={true}
+              >
+                {component.code}
+              </SyntaxHighlighter>
+            </div>
+          </Link>
         ))}
       </div>
     </div>

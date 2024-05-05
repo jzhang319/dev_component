@@ -1,10 +1,12 @@
 // Action types
+const GET_COMPONENT = "GET_COMPONENT";
 const GET_COMPONENTS = "GET_COMPONENTS";
 const ADD_COMPONENT = "ADD_COMPONENT";
 const UPDATE_COMPONENT = "UPDATE_COMPONENT";
 const DELETE_COMPONENT = "DELETE_COMPONENT";
 
 // Action creators
+const getComponent = (component) => ({ type: GET_COMPONENT, component });
 const getComponents = (components) => ({ type: GET_COMPONENTS, components });
 const addComponent = (component) => ({ type: ADD_COMPONENT, component });
 const updateComponent = (component) => ({ type: UPDATE_COMPONENT, component });
@@ -14,6 +16,16 @@ const deleteComponent = (componentId) => ({
 });
 
 // Thunks
+export const getComponentThunk = (id) => async (dispatch) => {
+  try {
+    const response = await fetch(`/api/components/${id}`);
+    const component = await response.json();
+    dispatch(getComponent(component));
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 export const getComponentsThunk = () => async (dispatch) => {
   try {
     const response = await fetch("/api/components");
@@ -74,6 +86,8 @@ const initialState = {
 // Reducer
 const componentReducer = (state = initialState, action) => {
   switch (action.type) {
+    case GET_COMPONENT:
+      return action.component;
     case GET_COMPONENTS:
       return action.components;
     case ADD_COMPONENT:
