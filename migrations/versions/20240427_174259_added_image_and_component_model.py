@@ -8,6 +8,9 @@ Create Date: 2024-04-27 17:42:59.601962
 from alembic import op
 import sqlalchemy as sa
 
+import os
+environment = os.getenv("FLASK_DEBUG")
+SCHEMA = os.environ.get("SCHEMA")
 
 # revision identifiers, used by Alembic.
 revision = '1604be3eae91'
@@ -15,9 +18,6 @@ down_revision = 'ffdc0a98111c'
 branch_labels = None
 depends_on = None
 
-import os
-environment = os.getenv("FLASK_DEBUG")
-SCHEMA = os.environ.get("SCHEMA")
 
 
 def upgrade():
