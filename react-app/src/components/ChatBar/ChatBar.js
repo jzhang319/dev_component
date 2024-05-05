@@ -90,9 +90,9 @@ function ChatBar() {
               key={index}
               className="mb-4 p-2 rounded bg-gray-800 flex items-center text-xl hover:bg-gray-700 transition-colors duration-200"
             >
-              <p className="font-bold mr-2">{item.username}:</p>
+              <p className="font-bold mr-2 text-primary">{item.username}:</p>
               <p>{item.message}</p>
-              <p className="ml-auto">{item.time}</p>
+              <p className="ml-auto text-secondary">{item.time}</p>
             </div>
           ))}
           <div ref={endOfMessagesRef} />

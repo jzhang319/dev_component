@@ -2,8 +2,14 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import { authenticate } from "./store/session";
-import { LeftBar, Feed, Home, Navbar, ChatBar } from "./exports";
-// import Navigation from "./components/Navigation";
+import {
+  LeftBar,
+  Home,
+  Navbar,
+  ChatBar,
+  Feed,
+  SingleFeedDetail,
+} from "./exports";
 
 function App() {
   const dispatch = useDispatch();
@@ -28,9 +34,10 @@ function App() {
       >
         {isLoaded && (
           <Switch>
-            <Route exact path="/components/:componentID">
+            <Route exact path="/components/:id">
               <div className="w-3/5 h-full flex flex-col justify-center items-center mx-auto">
                 {/* <Feed /> */}
+                <SingleFeedDetail />
               </div>
             </Route>
 

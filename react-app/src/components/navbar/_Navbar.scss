@@ -39,7 +39,7 @@
 
   &__center{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     grid-column-start: 2;
     grid-column-end: 3;
@@ -93,7 +93,7 @@
   &--username{
     font-size:1.6rem;
     font-weight: 600;
-    color: #0d9488
+    color: #eab308
   }
 
   &--userIcon{

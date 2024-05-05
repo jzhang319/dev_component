@@ -11,6 +11,10 @@ module.exports = {
         45: "11.25rem", // 1rem = 16px, so 11.25rem = 180px
         50: "12.5rem", // 1rem = 16px, so 12.5rem = 200px
       },
+      colors: {
+        primary: "#0d9488", // teal-600
+        secondary: "#eab308", // yellow-500
+      },
       keyframes: {
         blink: {
           "0%": { opacity: "0" },
