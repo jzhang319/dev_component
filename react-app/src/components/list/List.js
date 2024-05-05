@@ -1,9 +1,9 @@
 import React , {useState}from 'react'
 import { ArrowDownwardIcon, ArrowForwardIcon } from '../../exports'
 
-const List = ({text,show, setShow }) => {
+const List = ({text}) => {
 
-  // const [show, setShow] = useState(false)
+  const [show, setShow] = useState(false)
 
   return (
     <div className='list'>
