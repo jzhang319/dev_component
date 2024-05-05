@@ -12,6 +12,7 @@ class Image(db.Model):
     updated_at = db.Column(db.DateTime, server_default=db.func.now(), server_onupdate=db.func.now())
 
     component_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('components.id'), nullable=False))
+    
     component = db.relationship('Component', back_populates='images')
 
     def to_dict(self):
