@@ -32,6 +32,7 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+
     if environment == "production":
         op.execute(f"ALTER TABLE components SET SCHEMA {SCHEMA};")
 
@@ -44,6 +45,7 @@ def upgrade():
     sa.ForeignKeyConstraint(['component_id'], ['components.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+    
     if environment == "production":
         op.execute(f"ALTER TABLE images SET SCHEMA {SCHEMA};")
 
