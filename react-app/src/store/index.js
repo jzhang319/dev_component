@@ -5,7 +5,7 @@ import componentReducer from './component'
 
 const rootReducer = combineReducers({
   session,
-  component: componentReducer,
+  components: componentReducer,
 });
 
 

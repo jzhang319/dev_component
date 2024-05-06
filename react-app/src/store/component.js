@@ -1,9 +1,9 @@
 // Action types
-const GET_COMPONENT = "GET_COMPONENT";
-const GET_COMPONENTS = "GET_COMPONENTS";
-const ADD_COMPONENT = "ADD_COMPONENT";
-const UPDATE_COMPONENT = "UPDATE_COMPONENT";
-const DELETE_COMPONENT = "DELETE_COMPONENT";
+const GET_COMPONENT = "component/GET_COMPONENT";
+const GET_COMPONENTS = "component/GET_COMPONENTS";
+const ADD_COMPONENT = "component/ADD_COMPONENT";
+const UPDATE_COMPONENT = "component/UPDATE_COMPONENT";
+const DELETE_COMPONENT = "component/DELETE_COMPONENT";
 
 // Action creators
 const getComponent = (component) => ({ type: GET_COMPONENT, component });
@@ -27,13 +27,19 @@ export const getComponentThunk = (id) => async (dispatch) => {
 };
 
 export const getComponentsThunk = () => async (dispatch) => {
-  try {
-    const response = await fetch("/api/components");
-    const components = await response.json();
-    dispatch(getComponents(components));
-  } catch (err) {
-    console.error(err);
+  const response = await fetch('/api/components/')
+  if(response.ok){
+    const data = await response.json()
+    dispatch(getComponents(data))
+    return data
   }
+  // try {
+  //   const response = await fetch("/api/components/");
+  //   const components = await response.json();
+  //   dispatch(getComponents(components));
+  // } catch (err) {
+  //   console.error(err);
+  // }
 };
 
 export const addComponentThunk = (component) => async (dispatch) => {
@@ -79,17 +85,22 @@ export const deleteComponentThunk = (componentId) => async (dispatch) => {
 };
 
 // Initial state
-const initialState = {
-  components: [],
-};
+const initialState = {};
 
 // Reducer
 const componentReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_COMPONENT:
       return action.component;
-    case GET_COMPONENTS:
-      return action.components;
+    case GET_COMPONENTS:{
+      const newState = {...state}
+      console.log(action.components)
+      action.components.forEach(component => {
+        newState[component.id] = component
+      })
+      return newState
+    }
+      // return action.components;
     case ADD_COMPONENT:
       return { ...state, components: [...state.components, action.component] };
     case UPDATE_COMPONENT:
