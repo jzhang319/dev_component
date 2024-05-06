@@ -7,7 +7,6 @@ import {
   Home,
   Navbar,
   ChatBar,
-  Feed,
   SingleFeedDetail,
 } from "./exports";
 
@@ -36,7 +35,6 @@ function App() {
           <Switch>
             <Route exact path="/components/:id">
               <div className="w-3/5 h-full flex flex-col justify-center items-center mx-auto">
-                {/* <Feed /> */}
                 <SingleFeedDetail />
               </div>
             </Route>
