@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { NavLink } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import { SearchIcon, LogoutIcon, LoginIcon, SignupIcon } from "../../exports";
 import { logout } from "../../store/session";
@@ -29,7 +30,6 @@ const Navbar = () => {
 
     document.addEventListener("click", closeMenu);
     return () => document.removeEventListener("click", closeMenu);
-
   }, [dispatch, showMenu, dropdownVisible]);
 
   const handleLogout = (e) => {
@@ -42,10 +42,10 @@ const Navbar = () => {
   return (
     <div className="navbar">
       <div className="navbar__wrapper sm:flex-col">
-        <div className="navbar__left">
+        <NavLink to="/" className="navbar__left">
           <h1 className="navbar__left--logo">Dev</h1>
           <h1 className="navbar__left--logo2">Component</h1>
-        </div>
+        </NavLink>
 
         <div className="navbar__center">
           <input
