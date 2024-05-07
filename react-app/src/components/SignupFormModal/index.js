@@ -32,7 +32,7 @@ function SignupFormModal() {
   };
 
   return (
-    <div className="flex items-center justify-center bg-slate-200">
+    <div className="flex items-center justify-center bg-slate-300">
       <div className="p-6 space-y-8 rounded shadow-lg w-96">
         <h1 className="text-2xl font-bold text-center text-gray-700">
           <SignupIcon className="mr-2" />

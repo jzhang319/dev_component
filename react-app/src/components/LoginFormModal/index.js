@@ -24,7 +24,7 @@ function LoginFormModal() {
 
   return (
     <div className="flex items-center justify-center">
-      <div className="p-6 space-y-8 bg-slate-200 shadow-lg w-96 ">
+      <div className="p-6 space-y-8 bg-slate-300 shadow-lg w-96 ">
         <h1 className="text-2xl font-bold text-center text-gray-700">
           <LoginIcon className="mr-2" />
           Log In
