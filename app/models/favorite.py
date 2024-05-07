@@ -14,7 +14,7 @@ class Favorite(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     component_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('components.id')), nullable=False)
 
-    user = db.relationship('User', back_populates='favorites', cascade='all', single_parent=True)
+    user = db.relationship('User', back_populates='favorites', cascade='all')
     component = db.relationship('Component', back_populates='favorites', cascade='all')
 
     def to_dict(self):
