@@ -13,12 +13,14 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
+    image_url = db.Column(db.String(400))
     is_admin = db.Column(db.Boolean, nullable=False, default=False)
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, server_default=db.func.now(), server_onupdate=db.func.now())
 
     components = db.relationship('Component', back_populates='user', cascade='all, delete-orphan')
 
+    favorites = db.relationship('Favorite', back_populates='user', cascade='all, delete-orphan')
 
     @property
     def password(self):
@@ -36,7 +38,9 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'username': self.username,
             'email': self.email,
+            'image_url': self.image_url,
             'components': [component.to_dict() for component in self.components],
+            'favorites': [favorite.to_dict() for favorite in self.favorites],
             'created_at': self.created_at,
             'updated_at': self.updated_at
         }
