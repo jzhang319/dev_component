@@ -54,7 +54,7 @@ import {
 const SingleFeedDetail = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const component = useSelector((state) => state.component);
+  const component = useSelector((state) => state.components);
   const [copiedComponentId, setCopiedComponentId] = useState(null);
 
   useEffect(() => {
@@ -62,6 +62,8 @@ const SingleFeedDetail = () => {
       console.error("Error fetching components:", error);
     });
   }, [dispatch, id]);
+
+  console.log(component, ' <--- component from react')
 
   return (
     <div className="feed flex w-full">
@@ -71,7 +73,7 @@ const SingleFeedDetail = () => {
       >
         <div className="flex justify-between">
           <h3 className="ml-3 text-3xl">{component?.type}</h3>
-          <h4 className="ml-3 text-xl">User: {component.user?.username}</h4>
+          <h4 className="ml-3 text-xl">User: {component?.user?.username}</h4>
           {copiedComponentId === component?.id ? (
             <button className="m-2">
               <ClipboardIcon className="mr-1" />

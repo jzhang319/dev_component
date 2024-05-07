@@ -21,6 +21,7 @@ export const getComponentThunk = (id) => async (dispatch) => {
     const response = await fetch(`/api/components/${id}`);
     const component = await response.json();
     dispatch(getComponent(component));
+    return component;
   } catch (err) {
     console.error(err);
   }
@@ -92,6 +93,7 @@ const componentReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_COMPONENT:
       return action.component;
+
     case GET_COMPONENTS:{
       const newState = {...state}
       console.log(action.components)
