@@ -63,7 +63,7 @@ const Feed = ({ show, setShow, text }) => {
   const allComponents = useSelector((state) => Object.values(state.components));
   // const allComponents = useSelector(state => state.components)
   // console.log(allComponents, " <----- allComponents");
-  console.log(allComponents)
+  // console.log(allComponents)
 
   const [copy, setCopy] = useState(false);
   const [copiedComponentId, setCopiedComponentId] = useState(null);

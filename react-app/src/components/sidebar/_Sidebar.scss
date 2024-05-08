@@ -14,3 +14,44 @@
   max-width: 38rem;
   height: calc(100vh - 6.25rem)
 }
+
+.list{
+
+  &__wrapper{
+    display: flex;
+    align-items: center;
+    // margin-left: 1rem;
+    font-size: 1.6rem;
+    cursor: pointer;
+    // margin-top: .5rem;
+    // text-align: center;
+    // margin-bottom: 1rem;
+    width: 100%;
+  }
+
+  &__toggle{
+    color: $popup-button2;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    width: 80%;
+    margin-left: auto;
+    margin-right:auto;
+    padding-left: 2rem;
+    border-radius: 1rem;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+
+    &:hover, &.active {
+      color: $popup-button1;
+      background-color: $searchbar_color;
+      // height: 3rem;
+    }
+  }
+
+  &__button{
+    font-size: 1.6rem;
+    margin-left: 1rem;
+    font-weight: 800;
+  }
+}
