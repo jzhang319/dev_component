@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { ArrowDownwardIcon, ArrowForwardIcon, List } from '../../exports'
+import { List } from '../../exports'
 
 const Sidebar = () => {
 

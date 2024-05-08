@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 import * as componentActions from "../../store/component";
 import { ClipboardIcon } from "../../exports";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";

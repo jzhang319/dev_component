@@ -1,10 +1,19 @@
 from flask import Blueprint, jsonify, current_app
 from flask_login import login_required, current_user
+from sqlalchemy.orm import joinedload
 from app.models import Component, db, Image
 from flask import request
 from werkzeug.utils import secure_filename
+from google.cloud import storage
+from google.oauth2 import service_account
 import os
 import subprocess
+
+# access the environment variables
+key_path = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
+credentials = service_account.Credentials.from_service_account_file(key_path)
+# create storage client
+storage_client = storage.Client(credentials=credentials)
 
 component_routes = Blueprint('components', __name__)
 
@@ -39,11 +48,25 @@ def create_component():
     # Ensure the file is a valid image
     if image and allowed_file(image.filename):
         filename = secure_filename(image.filename.replace(" ", "_"))
-        # currently saving image files to UPLOAD_FOLDER, will upload to GCP later on after it's setup
-        image.save(os.path.join(current_app.config['UPLOAD_FOLDER'], filename))
+
+        # Create a Cloud Storage client.
+        gcs = storage.Client()
+
+        # Get the bucket that the file will be uploaded to.
+        bucket = gcs.get_bucket(current_app.config['devcomponent'])
+
+        # Create a new blob and upload the file's content.
+        blob = bucket.blob(filename)
+        blob.upload_from_string(
+            image.read(),
+            content_type=image.content_type
+        )
+
+        # Make the blob publicly viewable.
+        blob.make_public()
 
         new_image = Image(
-            url=os.path.join(current_app.config['UPLOAD_FOLDER'], filename),
+            url=blob.public_url,
             component_id=new_component.id,
         )
 
@@ -86,13 +109,26 @@ def delete_component(id):
     if component.user_id != current_user.id or current_user.is_admin == False:
         return {'errors': 'Unauthorized'}, 401
 
+    # Delete the images associated with the component from GCS
+    for image in component.images:
+        # Parse the image URL to get the blob name
+        blob_name = image.url.rsplit('/', 1)[-1]
+
+        # Get the bucket that the image is stored in
+        bucket = storage_client.get_bucket(current_app.config['devcomponent'])
+
+        # Get the blob and delete it
+        blob = bucket.blob(blob_name)
+        blob.delete()
+
+        # Delete the image from the database
+        db.session.delete(image)
+
+    # Delete the component from the database
     db.session.delete(component)
     db.session.commit()
 
     return {'message': 'Component deleted'}
-
-
-from sqlalchemy.orm import joinedload
 
 @component_routes.route('/<int:id>', methods=['GET'])
 def get_component(id):
