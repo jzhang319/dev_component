@@ -4,13 +4,17 @@ import { ArrowDownwardIcon, ArrowForwardIcon } from '../../exports'
 const List = ({text}) => {
 
   const [show, setShow] = useState(false)
-
+  const something = (e) => {
+    // e.preventDefault()
+    alert('helooo')
+  }
   return (
     <div className='list'>
       <div className="list__wrapper">
 
         {show ?
-          <div className='list__toggle' onClick={() => setShow(false)}>
+          <div className='list__toggle'
+          onClick={something}>
             <ArrowDownwardIcon className='list__icon' style={{fontSize: '2rem'}}/>
             <span className="list__button" >{text}</span>
           </div>
