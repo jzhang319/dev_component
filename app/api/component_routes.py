@@ -146,6 +146,24 @@ def get_component(id):
 
     return jsonify(formatted_component)
 
+@component_routes.route('/user', methods=['GET'])
+@login_required
+def get_user_components():
+    """
+    Get all components owned by the current user and return them as a list of dictionaries
+    """
+    components = Component.query.filter_by(user_id=current_user.id).all()
+
+    formatted_components = [{
+        **component.to_dict(),
+        'user': {
+            'id': component.user.id,
+            'username': component.user.username,
+        },
+    } for component in components]
+
+    return jsonify(formatted_components)
+
 @component_routes.route('/')
 def get_all_components():
     components = Component.query.options(joinedload('user')).all()
