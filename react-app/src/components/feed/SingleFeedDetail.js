@@ -63,8 +63,6 @@ const SingleFeedDetail = () => {
     });
   }, [dispatch, id]);
 
-  console.log(component, ' <--- component from react')
-
   return (
     <div className="feed flex w-full">
       <div

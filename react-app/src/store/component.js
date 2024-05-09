@@ -103,6 +103,10 @@ export const deleteComponentThunk = (componentId) => async (dispatch) => {
   }
 };
 
+export const clearComponents = () => ({
+  type: "CLEAR_COMPONENTS",
+});
+
 // Initial state
 const initialState = {};
 
@@ -135,6 +139,9 @@ const componentReducer = (state = initialState, action) => {
       delete newState[action.componentId];
       return newState;
     }
+
+    case "CLEAR_COMPONENTS":
+      return {};
 
     default:
       return state;

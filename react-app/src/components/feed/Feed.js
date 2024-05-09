@@ -57,7 +57,7 @@ import {
   check,
 } from "../../exports";
 
-const Feed = ({ show, setShow, text }) => {
+const Feed = () => {
   const dispatch = useDispatch();
 
   const allComponents = useSelector((state) => Object.values(state.components));
@@ -65,6 +65,7 @@ const Feed = ({ show, setShow, text }) => {
   const [copiedComponentId, setCopiedComponentId] = useState(null);
 
   useEffect(() => {
+    dispatch(componentActions.clearComponents());
     dispatch(componentActions.getComponentsThunk());
   }, [dispatch]);
 

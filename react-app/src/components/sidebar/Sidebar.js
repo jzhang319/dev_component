@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import * as componentActions from "../../store/component";
@@ -8,8 +8,11 @@ const Sidebar = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const sessionUser = useSelector((state) => state.session.user);
+  // const userComponents = useSelector((state) => state.session.user?.components);
   const [show, setShow] = useState(null);
   const [data, setData] = useState({});
+  const [loading, setLoading] = useState(false);
+
   const listItems = [
     "Getting Started",
     "Components",
@@ -17,9 +20,14 @@ const Sidebar = () => {
     "Liked Components",
   ];
 
+  useEffect(() => {
+    console.log("Show: ", show);
+    console.log("Data: ", data);
+  }, [show, data]);
+
   const handleClick = async (text) => {
     if (text !== "Components" && !sessionUser) {
-      alert("Please log in to view your components."); // Display a popup if there's no session user
+      alert("Please log in to view your components.");
       return;
     }
     setShow(show === text ? null : text);
@@ -33,6 +41,8 @@ const Sidebar = () => {
         action = componentActions.getComponentsThunk();
         break;
       case "My Components":
+        // setData({ ...data, [text]: userComponents });
+        // return;
         action = componentActions.getUserComponentsThunk();
         break;
       case "Liked Components":
@@ -44,12 +54,11 @@ const Sidebar = () => {
 
     if (action) {
       const fetchedData = await dispatch(action);
-      setData({ ...data, [text]: fetchedData });
+      setData({ [text]: fetchedData });
       // console.log(fetchedData, " <----- fetchedData frontend");
     }
   };
   const handleComponentClick = (id) => {
-    // New function to handle component click
     history.push(`/components/${id}`);
   };
 
@@ -57,8 +66,8 @@ const Sidebar = () => {
     <div className="sidebar absolute flex-col h-full w-1/5 mt-25 z-50">
       <div className="sidebar__wrapper mt-8">
         {listItems.map((text) => (
-          <div key={text} className="list">
-            <div className="list__wrapper flex flex-col">
+          <div key={text} className="list w-full">
+            <div className="list__wrapper">
               {show === text ? (
                 <div
                   className={`list__toggle active`}
