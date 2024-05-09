@@ -1,0 +1,27 @@
+.buttonLarge{
+  display: flex;
+  align-items: center;
+
+  &__icon{
+    width: 80%;
+    height: auto;
+  }
+
+  &__button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-transform: capitalize;
+    font-weight: 800;
+    min-height: 5rem;
+    height: auto;
+    font-size: 1.6rem;
+    width: 100%;
+    cursor: pointer;
+    padding-left: .5rem;
+    text-align: center;
+    margin-left: 10%;
+    margin-right: auto;
+  }
+}
