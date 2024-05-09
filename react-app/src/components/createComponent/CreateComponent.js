@@ -3,6 +3,7 @@ import {addComponentThunk} from '../../store/component'
 import './_CreateComponent.scss'
 import { useSelector } from 'react-redux'
 const CreateComponent = () => {
+  const sessionUser = useSelector(state => state.session.user)
 
    const [type, setType] = useState('')
    const [c, setC] = useState('')
