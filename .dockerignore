@@ -1,0 +1,9 @@
+Dockerfile
+README.md
+*.pyc
+*.Pyo
+*.pyd
+__pycache__
+.pytest_cache
+node_modules
+
