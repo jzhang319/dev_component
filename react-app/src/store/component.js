@@ -110,36 +110,32 @@ const initialState = {};
 const componentReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_COMPONENT:
-      return action.component;
+      return { ...state, ...action.component };
 
     case GET_USER_COMPONENTS:
-      return { ...state, userComponents: action.components };
+      return { ...state, ...action.components };
 
     case GET_COMPONENTS: {
       const newState = { ...state };
-      console.log(action.components);
+      // console.log(action.components);
       action.components.forEach((component) => {
         newState[component.id] = component;
       });
       return newState;
     }
-    // return action.components;
+
     case ADD_COMPONENT:
-      return { ...state, components: [...state.components, action.component] };
+      return { ...state, [action.component.id]: action.component };
+
     case UPDATE_COMPONENT:
-      return {
-        ...state,
-        components: state.components.map((component) =>
-          component.id === action.component.id ? action.component : component
-        ),
-      };
-    case DELETE_COMPONENT:
-      return {
-        ...state,
-        components: state.components.filter(
-          (component) => component.id !== action.componentId
-        ),
-      };
+      return { ...state, [action.component.id]: action.component };
+
+    case DELETE_COMPONENT: {
+      const newState = { ...state };
+      delete newState[action.componentId];
+      return newState;
+    }
+
     default:
       return state;
   }

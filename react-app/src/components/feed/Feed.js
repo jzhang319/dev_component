@@ -61,31 +61,12 @@ const Feed = ({ show, setShow, text }) => {
   const dispatch = useDispatch();
 
   const allComponents = useSelector((state) => Object.values(state.components));
-  // const allComponents = useSelector(state => state.components)
-  // console.log(allComponents, " <----- allComponents");
-  // console.log(allComponents)
-
   const [copy, setCopy] = useState(false);
   const [copiedComponentId, setCopiedComponentId] = useState(null);
 
   useEffect(() => {
     dispatch(componentActions.getComponentsThunk());
   }, [dispatch]);
-
-  let content = `<div className="list__wrapper">
-
-  {show ?
-    <div className='list__toggle' >
-      <ArrowDownwardIcon className='list__icon' style={{fontSize: '2rem'}}/>
-      <span className="list__button"  onClick={() => setShow(false)}>{text}</span>
-    </div>
-    :
-  <div className='list__toggle' >
-    <ArrowForwardIcon className='list__icon' style={{fontSize: '2rem'}}/>
-    <span className="list__button"  onClick={() => setShow(true)}>{text}</span>
-  </div>
-  }
-</div>`;
 
   return (
     <div className="feed mx-auto">

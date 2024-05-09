@@ -55,3 +55,20 @@
     font-weight: 800;
   }
 }
+
+.list__data {
+  width: 60%;
+  text-align: center;
+}
+
+.component__item {
+  padding: 0.5rem;
+  border-radius: 1rem;
+  transition: background-color 0.3s ease;
+
+
+  &:hover {
+    color: $popup-button1;
+    background-color: $searchbar_color;
+  }
+}

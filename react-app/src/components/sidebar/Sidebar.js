@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import * as componentActions from "../../store/component";
 import { ArrowDownwardIcon, ArrowForwardIcon } from "../../exports";
 
 const Sidebar = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const sessionUser = useSelector((state) => state.session.user);
   const [show, setShow] = useState(null);
   const [data, setData] = useState({});
@@ -16,7 +18,7 @@ const Sidebar = () => {
   ];
 
   const handleClick = async (text) => {
-    if (text === "My Components" && !sessionUser) {
+    if (text !== "Components" && !sessionUser) {
       alert("Please log in to view your components."); // Display a popup if there's no session user
       return;
     }
@@ -46,6 +48,10 @@ const Sidebar = () => {
       // console.log(fetchedData, " <----- fetchedData frontend");
     }
   };
+  const handleComponentClick = (id) => {
+    // New function to handle component click
+    history.push(`/components/${id}`);
+  };
 
   return (
     <div className="sidebar absolute flex-col h-full w-1/5 mt-25 z-50">
@@ -73,10 +79,16 @@ const Sidebar = () => {
                   <span className="list__button">{text}</span>
                 </div>
               )}
-              {show === text && data[text] && (
+              {show === text && data[text] && data[text].length > 0 && (
                 <div className="list__data flex flex-col w-100">
                   {data[text].map((item) => (
-                    <p key={item.id}>ID {item.id} Type: {item.type}</p>
+                    <p
+                      key={item.id}
+                      onClick={() => handleComponentClick(item.id)}
+                      className="component__item"
+                    >
+                      ID {item.id} Type: {item.type}
+                    </p>
                   ))}
                 </div>
               )}
