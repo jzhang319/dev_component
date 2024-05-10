@@ -11,7 +11,6 @@ const Sidebar = () => {
   // const userComponents = useSelector((state) => state.session.user?.components);
   const [show, setShow] = useState(null);
   const [data, setData] = useState({});
-  const [loading, setLoading] = useState(false);
 
   const listItems = [
     "Getting Started",
@@ -20,10 +19,10 @@ const Sidebar = () => {
     "Liked Components",
   ];
 
-  useEffect(() => {
-    console.log("Show: ", show);
-    console.log("Data: ", data);
-  }, [show, data]);
+  // useEffect(() => {
+  //   console.log("Show: ", show);
+  //   console.log("Data: ", data);
+  // }, [show, data]);
 
   const handleClick = async (text) => {
     if (text !== "Components" && !sessionUser) {
