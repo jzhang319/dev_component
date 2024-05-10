@@ -6,8 +6,7 @@ from logging.config import fileConfig
 from sqlalchemy import engine_from_config
 from sqlalchemy import pool
 
-import alembic
-from alembic import context, autogenerate
+from alembic import context
 
 import os
 environment = os.getenv("FLASK_ENV")
@@ -61,18 +60,23 @@ def run_migrations_offline():
 
 
 def run_migrations_online():
-    """Run migrations in 'online' mode."""
+    """Run migrations in 'online' mode.
 
-    # Define a callback to process revision directives
+    In this scenario we need to create an Engine
+    and associate a connection with the context.
+
+    """
+
+    # this callback is used to prevent an auto-migration from being generated
+    # when there are no changes to the schema
+    # reference: http://alembic.zzzcomputing.com/en/latest/cookbook.html
     def process_revision_directives(context, revision, directives):
         if getattr(config.cmd_opts, 'autogenerate', False):
-            # Check if there are any upgrade operations
-            if not any(isinstance(d, alembic.autogenerate.migration.AlterTable) for d in directives):
-                # If no changes detected, clear the directives
+            script = directives[0]
+            if script.upgrade_ops.is_empty():
                 directives[:] = []
-                logger.info('No changes in schema detected. Skipping migration generation.')
+                logger.info('No changes in schema detected.')
 
-    # Create an engine and associate a connection with the context
     connectable = engine_from_config(
         config.get_section(config.config_ini_section),
         prefix='sqlalchemy.',
@@ -86,7 +90,6 @@ def run_migrations_online():
             process_revision_directives=process_revision_directives,
             **current_app.extensions['migrate'].configure_args
         )
-
         # Create a schema (only in production)
         if environment == "production":
             connection.execute(f"CREATE SCHEMA IF NOT EXISTS {SCHEMA}")
