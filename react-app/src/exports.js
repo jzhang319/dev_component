@@ -25,6 +25,7 @@ export {default as EmailIcon} from '@mui/icons-material/Email';
 export {default as PasswordIcon} from '@mui/icons-material/Key';
 export {default as UserIcon} from '@mui/icons-material/Person';
 export {default as AddIcon} from '@mui/icons-material/Add';
+export {default as CloseIcon} from '@mui/icons-material/Close';
 
 //Button
 export {default as ButtonL} from '../src/re-usable-buttons/buttonLarge/ButtonLarge'
