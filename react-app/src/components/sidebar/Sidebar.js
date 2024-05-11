@@ -95,7 +95,7 @@ const Sidebar = () => {
                       onClick={() => handleComponentClick(item.id)}
                       className="component__item"
                     >
-                      ID {item.id} Type: {item.type}
+                      id: {item.id} Type: {item.type}
                     </p>
                   ))}
                 </div>
