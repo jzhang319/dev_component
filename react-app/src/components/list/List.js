@@ -14,7 +14,7 @@ const List = ({text}) => {
 
         {show ?
           <div className='list__toggle'
-          onClick={something}>
+          onClick={() =>setShow(false)}>
             <ArrowDownwardIcon className='list__icon' style={{fontSize: '2rem'}}/>
             <span className="list__button" >{text}</span>
           </div>

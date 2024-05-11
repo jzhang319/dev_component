@@ -32,7 +32,9 @@ const CreateComponentRender = () => {
     </button> */}
     {showModal && (
       <Modal onClose={() => setShowModal(false)}>
-        <CreateComponent/>
+        <CreateComponent
+        setModal={setShowModal}
+        />
       </Modal>
     )}
   </div>
