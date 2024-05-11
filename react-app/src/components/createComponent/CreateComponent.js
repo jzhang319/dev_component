@@ -1,8 +1,8 @@
 import React, {useState} from 'react'
 import {addComponentThunk} from '../../store/component'
 import { useSelector } from 'react-redux'
-import { Avatar } from '@mui/material'
-import {CloseIcon} from '../../exports'
+import {CloseIcon, Avatar, CustomSelect, CheckCircleIcon} from '../../exports'
+
 
 const CreateComponent = ({setModal}) => {
   const sessionUser = useSelector(state => state.session.user)
@@ -10,7 +10,9 @@ const CreateComponent = ({setModal}) => {
    const [type, setType] = useState('')
    const [code, setCode] = useState('')
    const [image, setImage] = useState('')
+   const [showTypes, setShowTypes] = useState(false)
 
+   console.log(type)
    const updateCode = (e) => setCode(e.values.target)
    const updateType = (e) => setType(e.values.target)
    const updateImage = (e) => setImage(e.values.target)
@@ -58,31 +60,67 @@ const CreateComponent = ({setModal}) => {
 
         <div className="createComponent__formField">
           <form action="" className="createComponent__form">
-            {/* <input
-            type="text"
-            name=""
-            id=""
-            className="createComponent__input"
-            placeholder='Enter React Code'
-            /> */}
 
-            <textarea placeholder ='Enter React Code...'name="" id="" className="createComponent__textArea">
+            <div className="createComponent__choices">
 
-            </textarea>
-          <div className="createComponent__choices">
-
-            <select name="" id="" className="createComponent__select">
-              <option disabled value="">Select Type</option>
-              <option value="">Navbar</option>
-              <option value="">Header</option>
-              <option value="">Footer</option>
-              <option value="">Button</option>
+            <select hidden id="selectType" className="createComponent__select" value={type} onChange={updateType}>
             </select>
 
-            <textarea placeholder ='Enter CSS Code...'name="" id="" className="createComponent__textArea">
+            {showTypes ?
+            (<>
+            <div className="createComponent__items">
+              <button className="createComponent__items--item" onClick={() => setShowTypes(false)}>
+                <span className="createComponent__items--item-text" onClick={() => setType('Button')}>Button</span>
+              </button>
+
+              <button className="createComponent__items--item" onClick={() => setShowTypes(false)}>
+                <span className="createComponent__items--item-text" onClick={() => setType('Card')}>Card</span>
+              </button>
+
+              <button className="createComponent__items--item" onClick={() => setShowTypes(false)}>
+                <span className="createComponent__items--item-text" onClick={() => setType('Feed')}>Feed</span>
+              </button>
+
+              <button className="createComponent__items--item" onClick={() => setShowTypes(false)}>
+                <span className="createComponent__items--item-text" onClick={() => setType('Footer')}>Footer</span>
+              </button>
+
+              <button className="createComponent__items--item" onClick={() => setShowTypes(false)}>
+                <span className="createComponent__items--item-text" onClick={() => setType('Header')}>Header</span>
+              </button>
+
+              <button className="createComponent__items--item" onClick={() => setShowTypes(false)}>
+                <span className="createComponent__items--item-text" onClick={() => setType('Navbar')}>Navbar</span>
+              </button>
+
+              <button className="createComponent__items--item" onClick={() => setShowTypes(false)}>
+                <span className="createComponent__items--item-text" onClick={() => setType('Sidebar')}>Sidebar</span>
+              </button>
+            </div>
+            </>)
+
+            :(<>
+            <CustomSelect
+            idType='selectType'
+            setShow={setShowTypes}
+            Icon={<CheckCircleIcon
+              className=''
+              style={
+                {fontSize:'1.6rem',
+                color:'white'}}
+                />}
+            text={type ? type : 'Code Type'}
+            />
+            </>)}
+            <textarea placeholder ='Enter React Code...'name="" id="" className="createComponent__textArea ">
 
             </textarea>
           </div>
+
+
+
+            <textarea placeholder ='Enter CSS Code...'name="" id="" className="createComponent__textArea createComponent__textArea--second">
+            </textarea>
 
             <button type="submit" className="createComponent__button--submit">Create Component</button>
           </form>
