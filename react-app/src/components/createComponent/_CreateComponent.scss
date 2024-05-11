@@ -1,4 +1,167 @@
 .createComponent{
-  width: 500px;
-  height:500px;
+  background-color: $popup-background;
+  width: 50rem;
+  min-height: 52.5rem;
+  height: auto;
+  background-image: linear-gradient(to right bottom, $popup-button1,black, $popup-button2);
+
+  place-items: center;
+  border-radius: .5rem;
+
+  &__title{
+    display: flex;
+    justify-content: space-between;
+    padding-top: .5rem;
+    border-bottom: .1rem solid;
+    padding-bottom: .5rem;
+    background-color: black;
+    border:1px solid $popup-background;
+    border-top-right-radius: .5rem;
+    border-top-left-radius: .5rem;
+
+    &--logo{
+      display: flex;
+      flex:1;
+      justify-content: center;
+    }
+  }
+
+  &__userInfo{
+    display: flex;
+    flex-flow: column wrap;
+    align-content:flex-end;
+    color: $popup-background;
+    font-weight: 800;
+    font-size: 2rem;
+    margin-top: 1.5rem;
+
+    &--container{
+      display: flex;
+      flex-direction: row;
+      margin-right: 1rem;
+    }
+  }
+
+  &__username{
+    margin-right: 1rem;
+  }
+
+  &__button{
+
+
+    &--closing{
+      margin-right: 1rem;
+      &-icon{
+        font-size: 4rem;
+        color: $popup-background;
+
+        &:hover{
+          color:$popup-button1;
+        }
+      }
+    }
+
+    &--submit{
+      margin-top: 2rem;
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: white;
+      background-color: $popup-button1;
+      width: 33%;
+      border-radius: 1rem;
+      margin-left: 16.7rem;
+      height: 4rem;
+      outline: none;
+      border: none;
+      margin-bottom: 2rem;
+
+      &:hover{
+        background-color: $popup-button2;
+      }
+      // margin-right: 50%;
+    }
+  }
+
+  &__formField{
+    // display: flex;
+
+  }
+
+  &__form{
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__select{
+    margin-top: 1rem;
+    margin-left: 1rem;
+    width: 10rem;
+    height: 2rem;
+  }
+
+  &__textArea{
+    margin-top: 1rem;
+    height: 20rem;
+    border: none;
+    outline: none;
+    width: 30rem;
+    padding: 1rem;
+    font-size: 2rem;
+    font-weight: 600;
+    background-color: rgba(181, 181, 181, 0.533);
+    margin-left: 10.5rem;
+    color: black;
+    resize: none;
+    margin-left: 1rem;
+    overflow-y: scroll;
+    scrollbar-width: none;
+
+    &::placeholder{
+      color: black;
+      text-align: center;
+      padding-top: 7.5rem;
+
+    }
+    &:focus::placeholder{
+      color: transparent;
+    }
+
+    &:not(:last-child){
+      margin-left: 12.5rem;
+    }
+    // background-image: linear-gradient(to right bottom, $popup-button2, $popup-button1);
+  }
+
+  &__choices{
+    display: flex;
+    margin-top: 2rem;
+  }
+
+
+
+
+
+  // &__title{
+  //   display: flex;
+  //   justify-content: center;
+  //   align-items: center;
+  //   text-align: center;
+  // }
+
+  // &__formField{
+  //   display: flex;
+  //   flex-direction: column;
+  //   justify-content: center;
+  //   align-items: center;
+  //   background-color: red;
+  // }
+
+  // &__form{
+  //   display: flex;
+  //   flex-direction: column;
+  //   align-items: center;
+  //   justify-content: center;
+  // }
+
+
 }
