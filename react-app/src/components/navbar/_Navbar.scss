@@ -1,6 +1,7 @@
 
 .navbar{
-  height: 8rem;
+  height: auto;
+  min-height: 8rem;
   border-bottom: .3rem solid $searchbar_color;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -34,6 +35,7 @@
       font-size: 2.5rem;
       font-weight: 800;
       color: $popup-button1;
+      object-fit: contain;
     }
   }
 
