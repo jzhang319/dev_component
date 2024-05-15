@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import {addComponentThunk} from '../../store/component'
 import { useSelector } from 'react-redux'
-import {CloseIcon, Avatar, CustomSelect, CheckCircleIcon} from '../../exports'
+import {ArrowCircleUpIcon,ArrowCircleDownIcon, CloseIcon, Avatar, CustomSelect, CheckCircleIcon} from '../../exports'
 import {useModal} from '../../context/Modal'
 
 const CreateComponent = () => {
@@ -69,8 +69,15 @@ const CreateComponent = () => {
             {showTypes ?
             (<>
             <div className="createComponent__items">
+              <button className="cancel" onClick={() => setShowTypes(false)}>
+                <span className="cancel__text">
+                  <CheckCircleIcon style={{fontSize:'2rem'}}/>
+                  Cancel
+                  <ArrowCircleUpIcon style={{fontSize:'2rem'}}/>
+                  </span>
+              </button>
               <button className="createComponent__items--item" onClick={() => setShowTypes(false)}>
-                <span className="createComponent__items--item-text" onClick={() => setType('Button')}>Button</span>
+                <span className="createComponent__items--item-text" onClick={() => setType('Button')}>Buttons</span>
               </button>
 
               <button className="createComponent__items--item" onClick={() => setShowTypes(false)}>
@@ -102,13 +109,15 @@ const CreateComponent = () => {
             :(<>
             <CustomSelect
             idType='selectType'
-            setShow={setShowTypes}
-            Icon={<CheckCircleIcon
-              className=''
+            className='createComponent__customSelect'
+            onCLick={() => setShowTypes(true)}
+            Icon1={<CheckCircleIcon
               style={
-                {fontSize:'1.6rem',
+                {fontSize:'2rem',
                 color:'white'}}
+
                 />}
+            Icon2={<ArrowCircleDownIcon style={{fontSize:'2rem'}}/>}
             text={type ? type : 'Code Type'}
             />
             </>)}

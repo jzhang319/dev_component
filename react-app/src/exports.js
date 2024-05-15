@@ -29,7 +29,8 @@ export {default as ButtonIcon} from '@mui/material/Button'
 export {default as Avatar} from '@mui/material/Avatar'
 export {default as ArrowDropDownCircleIcon} from '@mui/icons-material/ArrowDropDownCircle';
 export {default as CheckCircleIcon} from '@mui/icons-material/CheckCircle'
-
+export {default as ArrowCircleUpIcon} from '@mui/icons-material/ArrowCircleUp';
+export {default as ArrowCircleDownIcon} from '@mui/icons-material/ArrowCircleDown';
 //Button
 export {default as ButtonL} from '../src/re-usable-buttons/buttonLarge/ButtonLarge'
 export {default as ButtonM} from '../src/re-usable-buttons/buttonMedium/ButtonMedium'

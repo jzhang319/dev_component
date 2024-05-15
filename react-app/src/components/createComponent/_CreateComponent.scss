@@ -126,9 +126,6 @@
     &:focus::placeholder{
       color: transparent;
     }
-
-
-    // background-image: linear-gradient(to right bottom, $popup-button2, $popup-button1);
   }
 
 
@@ -143,6 +140,7 @@
     width: 15.5rem;
     margin-left: 1.6rem;
     position: absolute;
+    top: 12.7rem;
 
     &--item{
       background-color: $popup-button1;
@@ -161,30 +159,39 @@
         font-weight: 800;
       }
     }
+
+  }
+  &__customSelect{
+    border-radius: 1rem;
+    transition: transform 0.3s ease-in-out;
+    &:hover{
+      background-color:$popup-button1;
+      background-image: linear-gradient(to right bottom, #2563eb, $popup-button2);
+      transform: translateY(5px);
+      box-shadow: 1px -2px 6px 1px rgba(255, 255, 255, 0.603);
+    }
   }
 
+}
 
-  // &__title{
-  //   display: flex;
-  //   justify-content: center;
-  //   align-items: center;
-  //   text-align: center;
-  // }
+.cancel{
+  background-color: $popup-button2;
+  height: 4rem;
+  color: white;
+  border-radius: 1rem;
 
-  // &__formField{
-  //   display: flex;
-  //   flex-direction: column;
-  //   justify-content: center;
-  //   align-items: center;
-  //   background-color: red;
-  // }
-
-  // &__form{
-  //   display: flex;
-  //   flex-direction: column;
-  //   align-items: center;
-  //   justify-content: center;
-  // }
-
-
+  &__text{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 1.6rem;
+    font-weight: 800;
+  }
+  transition: transform 0.3s ease-in-out;
+  &:hover{
+    background-color:$popup-button1;
+    background-image: linear-gradient(to right bottom, #2563eb, $popup-button1);
+    transform: translateY(-5px);
+    box-shadow: 1px -2px 6px 1px rgba(255, 255, 255, 0.603);
+  }
 }
