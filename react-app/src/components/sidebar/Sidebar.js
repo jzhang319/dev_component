@@ -107,7 +107,8 @@ const Sidebar = () => {
         ))}
       </div>
 
-      
+      {sessionUser && (
+
         <OpenModalButton
           buttonText={
             <div className="sidebar__custom--container">
@@ -124,6 +125,7 @@ const Sidebar = () => {
           modalComponent={<CreateComponentModal />}
           className="sidebar__custom cursor-pointer "
         />
+      )}
     </div>
   );
 };
