@@ -5,3 +5,4 @@ __pycache__/
 .DS_Store
 .vscode/
 devcomponent-vaulted-scholar-422700-m6-cd0cf5e09b00.json
+.google-cloud-key.json
