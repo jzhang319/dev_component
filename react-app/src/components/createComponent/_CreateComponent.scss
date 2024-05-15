@@ -190,7 +190,7 @@
   transition: transform 0.3s ease-in-out;
   &:hover{
     background-color:$popup-button1;
-    background-image: linear-gradient(to right bottom, #2563eb, $popup-button1);
+    background-image: linear-gradient(to right bottom, $popup-button1 ,#2563eb);
     transform: translateY(-5px);
     box-shadow: 1px -2px 6px 1px rgba(255, 255, 255, 0.603);
   }
