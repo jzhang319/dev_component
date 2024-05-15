@@ -4,5 +4,9 @@ __pycache__/
 .venv
 .DS_Store
 .vscode/
+<<<<<<< Updated upstream
 devcomponent-vaulted-scholar-422700-m6-cd0cf5e09b00.json
 .google-cloud-key.json
+=======
+google-cloud-key.json
+>>>>>>> Stashed changes

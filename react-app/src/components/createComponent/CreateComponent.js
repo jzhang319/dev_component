@@ -2,17 +2,17 @@ import React, {useState} from 'react'
 import {addComponentThunk} from '../../store/component'
 import { useSelector } from 'react-redux'
 import {CloseIcon, Avatar, CustomSelect, CheckCircleIcon} from '../../exports'
+import {useModal} from '../../context/Modal'
 
-
-const CreateComponent = ({setModal}) => {
+const CreateComponent = () => {
   const sessionUser = useSelector(state => state.session.user)
 
    const [type, setType] = useState('')
    const [code, setCode] = useState('')
    const [image, setImage] = useState('')
    const [showTypes, setShowTypes] = useState(false)
+   const {closeModal} = useModal()
 
-   console.log(type)
    const updateCode = (e) => setCode(e.values.target)
    const updateType = (e) => setType(e.values.target)
    const updateImage = (e) => setImage(e.values.target)
@@ -40,7 +40,7 @@ const CreateComponent = ({setModal}) => {
             </div>
             <button
             className='createComponent__button--closing'
-            onClick={() => setModal(false)}>
+            onClick={closeModal}>
               <CloseIcon
                className='createComponent__button--closing-icon'
                style={{fontSize:'3rem'}}

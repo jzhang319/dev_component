@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
 
-  &__icon{
+  &__container{
     width: 80%;
     height: auto;
   }
@@ -11,8 +11,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-
-    text-transform: capitalize;
     font-weight: 800;
     min-height: 5rem;
     height: auto;
@@ -23,5 +21,12 @@
     text-align: center;
     margin-left: 10%;
     margin-right: auto;
+
+
+    &--text{
+      display:flex;
+      // text-transform: uppercase;
+      align-items: center;
+    }
   }
 }

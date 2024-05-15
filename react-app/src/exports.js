@@ -10,7 +10,7 @@ export {default as Feed} from './components/feed/Feed'
 export {default as List} from './components/list/List'
 export {default as ChatBar} from './components/ChatBar/ChatBar.js'
 export {default as SingleFeedDetail} from './components/feed/SingleFeedDetail.js'
-
+export {default as CreateComponentModal} from './components/createComponent/CreateComponent'
 // Icon export
 export {default as SearchIcon} from "@mui/icons-material/Search"
 export {default as ArrowForwardIcon} from '@mui/icons-material/ArrowForward';
@@ -29,6 +29,7 @@ export {default as ButtonIcon} from '@mui/material/Button'
 export {default as Avatar} from '@mui/material/Avatar'
 export {default as ArrowDropDownCircleIcon} from '@mui/icons-material/ArrowDropDownCircle';
 export {default as CheckCircleIcon} from '@mui/icons-material/CheckCircle'
+
 //Button
 export {default as ButtonL} from '../src/re-usable-buttons/buttonLarge/ButtonLarge'
 export {default as ButtonM} from '../src/re-usable-buttons/buttonMedium/ButtonMedium'

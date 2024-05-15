@@ -4,8 +4,8 @@ const ButtonLarge = ({text, className, Icon, onClick}) => {
   return (
     <div className='buttonLarge'>
       {Icon? (
-        <div className='buttonLarge__icon' onClick={onClick}>
-          <button className={`buttonLarge__button ${className}`}><span>{Icon}{text}</span></button>
+        <div className='buttonLarge__container' onClick={onClick}>
+          <button className={`buttonLarge__button ${className}`}><span className='buttonLarge__button--text'>{Icon}{text}</span></button>
         </div>
       )
       :(

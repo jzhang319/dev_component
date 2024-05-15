@@ -1,28 +1,30 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import * as componentActions from "../../store/component";
-import { ArrowDownwardIcon, ArrowForwardIcon } from "../../exports";
+import { ArrowDownwardIcon, ArrowForwardIcon, CreateComponentModal, ButtonL, AddIcon  } from "../../exports";
+import OpenModalButton from "../OpenModalButton";
+
 
 const Sidebar = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const sessionUser = useSelector((state) => state.session.user);
-  // const userComponents = useSelector((state) => state.session.user?.components);
   const [show, setShow] = useState(null);
   const [data, setData] = useState({});
-
+  const [showMenu, setShowMenu] = useState(false);
+  const ulRef = useRef()
+  const closeMenu = (e) => {
+    if (ulRef.current && !ulRef.current.contains(e.target)) {
+      setShowMenu(false);
+    }
+  };
   const listItems = [
     "Getting Started",
     "Components",
     "My Components",
     "Liked Components",
   ];
-
-  // useEffect(() => {
-  //   console.log("Show: ", show);
-  //   console.log("Data: ", data);
-  // }, [show, data]);
 
   const handleClick = async (text) => {
     if (text !== "Components" && !sessionUser) {
@@ -104,6 +106,24 @@ const Sidebar = () => {
           </div>
         ))}
       </div>
+
+      
+        <OpenModalButton
+          buttonText={
+            <div className="sidebar__custom--container">
+              <ButtonL
+                text = 'Create Component'
+                className = 'sidebar__custom--container-button'
+                Icon = {<AddIcon style={{fontSize:'2rem', marginRight:'.5rem'}}/>}
+              />
+            </div>
+          }
+          onItemClick={(e) => {
+            closeMenu(e);
+          }}
+          modalComponent={<CreateComponentModal />}
+          className="sidebar__custom cursor-pointer "
+        />
     </div>
   );
 };

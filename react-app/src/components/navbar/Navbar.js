@@ -8,6 +8,7 @@ import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 
+
 const Navbar = () => {
   const dispatch = useDispatch();
   const ulRef = useRef();
@@ -84,6 +85,7 @@ const Navbar = () => {
                   {/* <span className="cursor-pointer text-2xl px-4 py-2 hover:bg-teal-600 hover:text-yellow-500">
                     Profile
                   </span> */}
+
                   <span
                     className="cursor-pointer text-2xl px-4 py-2 hover:bg-teal-600 hover:text-yellow-500"
                     onClick={handleLogout}
@@ -108,6 +110,10 @@ const Navbar = () => {
                     modalComponent={<LoginFormModal />}
                     className="cursor-pointer px-4 py-2 hover:bg-teal-600 hover:text-yellow-500 w-full"
                   />
+
+
+
+
                   <OpenModalButton
                     buttonText={
                       <div className="flex items-center">
